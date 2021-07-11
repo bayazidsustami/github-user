@@ -1,6 +1,7 @@
-package com.dicoding.academy.githubuser
+package com.dicoding.academy.githubuser.utility
 
 import android.content.Context
+import com.dicoding.academy.githubuser.data.UsersItem
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException

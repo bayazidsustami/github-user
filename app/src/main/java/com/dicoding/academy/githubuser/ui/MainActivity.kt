@@ -1,10 +1,11 @@
-package com.dicoding.academy.githubuser
+package com.dicoding.academy.githubuser.ui
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dicoding.academy.githubuser.utility.JsonHelper
 import com.dicoding.academy.githubuser.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

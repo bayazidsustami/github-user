@@ -1,9 +1,13 @@
-package com.dicoding.academy.githubuser
+package com.dicoding.academy.githubuser.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.dicoding.academy.githubuser.R
+import com.dicoding.academy.githubuser.data.UsersItem
 import com.dicoding.academy.githubuser.databinding.ActivityDetailUserBinding
+import com.dicoding.academy.githubuser.utility.getAvatarId
+import com.dicoding.academy.githubuser.utility.reformatNumber
 
 class DetailUserActivity : AppCompatActivity() {
 

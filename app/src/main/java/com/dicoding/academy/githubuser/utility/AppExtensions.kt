@@ -1,4 +1,4 @@
-package com.dicoding.academy.githubuser
+package com.dicoding.academy.githubuser.utility
 
 import android.content.Context
 import kotlin.math.abs

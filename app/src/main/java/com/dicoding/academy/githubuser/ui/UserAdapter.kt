@@ -1,10 +1,13 @@
-package com.dicoding.academy.githubuser
+package com.dicoding.academy.githubuser.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.dicoding.academy.githubuser.R
+import com.dicoding.academy.githubuser.data.UsersItem
 import com.dicoding.academy.githubuser.databinding.ItemListUserBinding
+import com.dicoding.academy.githubuser.utility.getAvatarId
 
 class UserAdapter: RecyclerView.Adapter<UserAdapter.ViewHolder>() {
 

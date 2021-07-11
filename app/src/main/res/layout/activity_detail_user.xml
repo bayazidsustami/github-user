@@ -7,7 +7,7 @@
     android:overScrollMode="never"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
-    tools:context=".DetailUserActivity">
+    tools:context=".ui.DetailUserActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
