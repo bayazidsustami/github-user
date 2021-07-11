@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:overScrollMode="never"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    tools:context=".DetailUserActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivProfile"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvFollowers"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawablePadding="10dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/default_font_size"
+            app:drawableStartCompat="@drawable/ic_followers"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/tvFollowing"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivProfile"
+            tools:text="245 Followers" />
+
+        <TextView
+            android:id="@+id/tvFollowing"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:drawablePadding="10dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/default_font_size"
+            android:layout_marginTop="10dp"
+            app:drawableStartCompat="@drawable/ic_following"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvFollowers"
+            app:layout_constraintTop_toBottomOf="@id/ivProfile"
+            tools:text="245 Following" />
+
+        <TextView
+            android:id="@+id/tvRepositoryCount"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            tools:text="245 repository"
+            android:drawablePadding="10dp"
+            android:textSize="@dimen/default_font_size"
+            android:textColor="@color/black"
+            android:layout_marginTop="24dp"
+            app:drawableStartCompat="@drawable/ic_repository"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvFollowers"/>
+
+        <TextView
+            android:id="@+id/tvCompany"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            tools:text="Google. inc"
+            android:drawablePadding="10dp"
+            android:textSize="@dimen/default_font_size"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            app:drawableStartCompat="@drawable/ic_company"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvRepositoryCount"/>
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            tools:text="Google. inc"
+            android:drawablePadding="10dp"
+            android:textSize="@dimen/default_font_size"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            app:drawableStartCompat="@drawable/ic_pin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCompany"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
