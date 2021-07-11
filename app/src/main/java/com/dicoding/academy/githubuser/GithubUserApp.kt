@@ -1,8 +1,10 @@
 package com.dicoding.academy.githubuser
 
 import android.app.Application
+import com.dicoding.academy.githubuser.di.ApplicationModule.adapterModule
 import com.dicoding.academy.githubuser.di.ApplicationModule.networkModule
 import com.dicoding.academy.githubuser.di.ApplicationModule.repositoryModule
+import com.dicoding.academy.githubuser.di.ApplicationModule.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -18,7 +20,9 @@ class GithubUserApp: Application() {
             modules(
                 listOf(
                     networkModule,
-                    repositoryModule
+                    repositoryModule,
+                    viewModelModule,
+                    adapterModule
                 )
             )
         }

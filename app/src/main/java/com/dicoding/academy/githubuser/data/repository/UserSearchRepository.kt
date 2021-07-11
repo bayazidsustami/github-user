@@ -1,5 +1,6 @@
 package com.dicoding.academy.githubuser.data.repository
 
+import android.util.Log
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -13,6 +14,7 @@ class UserSearchRepository(
     private val apiService: ApiService
 ): Repository.UserSearch {
     override fun getUserSearch(query: String): Flow<PagingData<UserItem>> {
+        Log.d("USR", "New query: $query")
         return Pager(
             config = PagingConfig(
                 pageSize = COUNT_OF_PER_PAGE,

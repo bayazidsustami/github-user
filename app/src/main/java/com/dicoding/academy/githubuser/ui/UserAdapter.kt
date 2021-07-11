@@ -2,18 +2,17 @@ package com.dicoding.academy.githubuser.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.academy.githubuser.R
-import com.dicoding.academy.githubuser.data.UsersItem
+import com.dicoding.academy.githubuser.data.dataSource.remote.response.UserItem
 import com.dicoding.academy.githubuser.databinding.ItemListUserBinding
-import com.dicoding.academy.githubuser.utility.getAvatarId
 
-class UserAdapter: RecyclerView.Adapter<UserAdapter.ViewHolder>() {
+class UserAdapter: PagingDataAdapter<UserItem, UserAdapter.ViewHolder>(DIFF_UTIL) {
 
-    internal var users = listOf<UsersItem>()
-
-    internal var onItemClick: ((UsersItem) -> Unit)? = null
+    internal var onItemClick: ((UserItem) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -22,25 +21,39 @@ class UserAdapter: RecyclerView.Adapter<UserAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindData(users[position])
+        val users = getItem(position)
+        if (users != null){
+            holder.bindData(users)
+        }
     }
-
-    override fun getItemCount(): Int = users.size
 
     inner class ViewHolder(private val binding: ItemListUserBinding)
         : RecyclerView.ViewHolder(binding.root){
 
-        fun bindData(data: UsersItem){
-            binding.tvName.text = data.name
-            binding.tvUsername.text = itemView.context.resources.getString(R.string.username, data.username)
-            binding.tvRepositoryCount.text = itemView.context.resources.getString(R.string.repository, data.repository)
+        fun bindData(data: UserItem){
+            binding.tvName.text = "Zero"
+            binding.tvUsername.text = itemView.context.resources.getString(R.string.username, data.login)
+            binding.tvRepositoryCount.text = "0 repo"
 
             Glide.with(itemView.context)
-                .load(itemView.context.getAvatarId(data.avatar))
+                .load(data.avatarUrl)
+                .centerCrop()
                 .into(binding.ivProfile)
 
             binding.root.setOnClickListener {
                 onItemClick?.invoke(data)
+            }
+        }
+    }
+
+    companion object{
+        private val DIFF_UTIL = object : DiffUtil.ItemCallback<UserItem>(){
+            override fun areItemsTheSame(oldItem: UserItem, newItem: UserItem): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: UserItem, newItem: UserItem): Boolean {
+                return oldItem == newItem
             }
         }
     }

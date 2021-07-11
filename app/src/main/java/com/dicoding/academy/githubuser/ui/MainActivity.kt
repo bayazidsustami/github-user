@@ -1,20 +1,24 @@
 package com.dicoding.academy.githubuser.ui
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.academy.githubuser.utility.JsonHelper
 import com.dicoding.academy.githubuser.databinding.ActivityMainBinding
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.*
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
-    private val jsonHelper by lazy { JsonHelper(this) }
-    private val viewModel by lazy { MainViewModel(jsonHelper) }
+    private val viewModel: MainViewModel by viewModel()
+    private val userAdapter: UserAdapter by inject()
 
-    private val userAdapter by lazy { UserAdapter() }
+    private var searchJob: Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,13 +31,32 @@ class MainActivity : AppCompatActivity() {
             addItemDecoration(DividerItemDecoration(this@MainActivity, LinearLayoutManager.VERTICAL))
         }
 
-        userAdapter.users = viewModel.getListUser()
-
-        userAdapter.onItemClick = { userItem ->
+        /*userAdapter.onItemClick = { userItem ->
             val intent = Intent(this, DetailUserActivity::class.java).apply {
                 putExtra(DetailUserActivity.DETAIL_EXTRA, userItem)
             }
             startActivity(intent)
+        }*/
+        val query = "baya"
+        searchUser(query)
+        initSearch()
+    }
+
+    private fun initSearch(){
+        lifecycleScope.launchWhenCreated {
+            userAdapter.loadStateFlow
+                .distinctUntilChangedBy { it.refresh }
+                .filter { it.refresh is LoadState.NotLoading }
+                .collect { binding.rvListUser.scrollToPosition(0) }
+        }
+    }
+
+    private fun searchUser(query: String){
+        searchJob?.cancel()
+        searchJob = lifecycleScope.launchWhenCreated {
+            viewModel.searchUser(query).collectLatest {
+                userAdapter.submitData(it)
+            }
         }
     }
 }

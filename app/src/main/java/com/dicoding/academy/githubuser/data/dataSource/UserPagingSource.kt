@@ -28,7 +28,7 @@ class UserPagingSource(
             val nextKey = if (users.isNullOrEmpty()){
                 null
             }else{
-                position + (params.loadSize / COUNT_OF_PER_PAGE)
+                position + (params.loadSize/ COUNT_OF_PER_PAGE)
             }
             LoadResult.Page(
                 data = users,

@@ -4,12 +4,12 @@ import com.squareup.moshi.Json
 
 data class UserResponse(
 
-	@Json(name="total_count")
+	@field:Json(name="total_count")
 	val totalCount: Int? = null,
 
-	@Json(name="incomplete_results")
+	@field:Json(name="incomplete_results")
 	val incompleteResults: Boolean? = null,
 
-	@Json(name="items")
+	@field:Json(name="items")
 	val items: List<UserItem> = emptyList()
 )
