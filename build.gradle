@@ -19,7 +19,9 @@ buildscript {
         //viewModel & liveData
         lifecycle_version = "2.2.0"
         viewModel_version = "2.3.1"
+
         navigation_version = "2.3.5"
+        pagination_version = "3.0.0"
 
         //DI
         koin_version= "3.0.2"
