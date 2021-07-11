@@ -11,5 +11,5 @@ data class UserResponse(
 	val incompleteResults: Boolean? = null,
 
 	@Json(name="items")
-	val items: List<UserItem?>? = null
+	val items: List<UserItem> = emptyList()
 )

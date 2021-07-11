@@ -12,8 +12,8 @@ interface ApiService {
     @GET("users")
     suspend fun searchUser(
         @Query("q") query: String,
-        @Query("page") page: String,
-        @Query("per_page") countOfPage: String = COUNT_OF_PER_PAGE
+        @Query("page") page: Int,
+        @Query("per_page") countOfPage: Int = COUNT_OF_PER_PAGE
     ): UserResponse
 
     @GET("users/{username}")
