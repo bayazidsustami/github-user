@@ -1,7 +1,6 @@
 package com.dicoding.academy.githubuser.ui.main
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -9,22 +8,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.academy.githubuser.databinding.ActivityMainBinding
 import com.dicoding.academy.githubuser.ui.adapter.UserAdapter
 import com.dicoding.academy.githubuser.ui.adapter.UserLoadStateAdapter
+import com.dicoding.academy.githubuser.ui.baseUI.BaseActivity
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity() {
-    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+class MainActivity : BaseActivity<ActivityMainBinding>(
+    ActivityMainBinding::inflate
+) {
 
     private val viewModel: MainViewModel by viewModel()
     private val userAdapter: UserAdapter by inject()
 
     private var searchJob: Job? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+    override fun initView(bind: ActivityMainBinding, savedInstanceState: Bundle?) {
         initAdapter()
 
         val query = "baya"
