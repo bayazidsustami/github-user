@@ -5,4 +5,5 @@
     <string name="username">\@%s</string>
     <string name="followers">%s Followers</string>
     <string name="following">%s Following</string>
+    <string name="retry">Ulangi</string>
 </resources>

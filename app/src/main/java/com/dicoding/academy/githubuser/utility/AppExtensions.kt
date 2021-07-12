@@ -1,6 +1,7 @@
 package com.dicoding.academy.githubuser.utility
 
 import android.content.Context
+import android.view.View
 import kotlin.math.abs
 
 fun Context.getAvatarId(imageName: String): Int{
@@ -19,4 +20,12 @@ fun Int.reformatNumber(): String {
             toString()
         }
     }
+}
+
+fun View.visible(){
+    visibility = View.VISIBLE
+}
+
+fun View.gone(){
+    visibility = View.GONE
 }

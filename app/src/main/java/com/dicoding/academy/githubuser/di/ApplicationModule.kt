@@ -5,7 +5,7 @@ import com.dicoding.academy.githubuser.data.repository.UserSearchRepository
 import com.dicoding.academy.githubuser.networking.ApiService
 import com.dicoding.academy.githubuser.networking.RetrofitBuilder
 import com.dicoding.academy.githubuser.ui.MainViewModel
-import com.dicoding.academy.githubuser.ui.UserAdapter
+import com.dicoding.academy.githubuser.ui.adapter.UserAdapter
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

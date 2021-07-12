@@ -1,4 +1,4 @@
-package com.dicoding.academy.githubuser.ui
+package com.dicoding.academy.githubuser.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

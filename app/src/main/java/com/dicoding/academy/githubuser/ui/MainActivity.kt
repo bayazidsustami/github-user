@@ -7,6 +7,8 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.academy.githubuser.databinding.ActivityMainBinding
+import com.dicoding.academy.githubuser.ui.adapter.UserAdapter
+import com.dicoding.academy.githubuser.ui.adapter.UserLoadStateAdapter
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
 import org.koin.android.ext.android.inject
@@ -23,7 +25,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        initAdapter()
 
+        val query = "baya"
+        searchUser(query)
+        initSearch()
+    }
+
+    private fun initAdapter(){
         with(binding.rvListUser){
             hasFixedSize()
             layoutManager = LinearLayoutManager(this@MainActivity)
@@ -31,15 +40,10 @@ class MainActivity : AppCompatActivity() {
             addItemDecoration(DividerItemDecoration(this@MainActivity, LinearLayoutManager.VERTICAL))
         }
 
-        /*userAdapter.onItemClick = { userItem ->
-            val intent = Intent(this, DetailUserActivity::class.java).apply {
-                putExtra(DetailUserActivity.DETAIL_EXTRA, userItem)
-            }
-            startActivity(intent)
-        }*/
-        val query = "baya"
-        searchUser(query)
-        initSearch()
+        binding.rvListUser.adapter = userAdapter.withLoadStateHeaderAndFooter(
+            header = UserLoadStateAdapter{userAdapter.retry()},
+            footer = UserLoadStateAdapter{userAdapter.retry()}
+        )
     }
 
     private fun initSearch(){
