@@ -1,4 +1,4 @@
-package com.dicoding.academy.githubuser.ui
+package com.dicoding.academy.githubuser.ui.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
