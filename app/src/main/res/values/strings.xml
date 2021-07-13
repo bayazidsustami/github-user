@@ -6,4 +6,5 @@
     <string name="followers">%s Followers</string>
     <string name="following">%s Following</string>
     <string name="retry">Ulangi</string>
+    <string name="search">Search</string>
 </resources>

@@ -3,4 +3,6 @@
     <dimen name="list_img_size">100dp</dimen>
     <dimen name="default_font_size">17sp</dimen>
     <dimen name="default_font_size_s">12sp</dimen>
+    <dimen name="margin_default">16dp</dimen>
+    <dimen name="margin_default_s">10dp</dimen>
 </resources>
