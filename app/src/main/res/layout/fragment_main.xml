@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:orientation="vertical"
-            app:layout_scrollFlags="scroll|snap">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <TextView
                 android:id="@+id/tvTitle"
@@ -49,6 +49,7 @@
             android:imeOptions="actionSearch"
             android:padding="@dimen/margin_default"
             android:singleLine="true"
+            android:textColor="@color/white"
             android:textColorHint="@color/white_70"
             android:textSize="@dimen/default_font_size_s" />
     </com.google.android.material.appbar.AppBarLayout>

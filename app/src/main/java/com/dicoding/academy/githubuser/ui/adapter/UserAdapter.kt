@@ -31,9 +31,8 @@ class UserAdapter: PagingDataAdapter<UserItem, UserAdapter.ViewHolder>(DIFF_UTIL
         : RecyclerView.ViewHolder(binding.root){
 
         fun bindData(data: UserItem){
-            binding.tvName.text = "Zero"
             binding.tvUsername.text = itemView.context.resources.getString(R.string.username, data.login)
-            binding.tvRepositoryCount.text = "0 repo"
+            binding.tvType.text = data.type
 
             Glide.with(itemView.context)
                 .load(data.avatarUrl)
