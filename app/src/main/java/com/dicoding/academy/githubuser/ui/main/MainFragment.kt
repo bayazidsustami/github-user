@@ -3,6 +3,7 @@ package com.dicoding.academy.githubuser.ui.main
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -11,6 +12,8 @@ import com.dicoding.academy.githubuser.databinding.FragmentMainBinding
 import com.dicoding.academy.githubuser.ui.adapter.UserAdapter
 import com.dicoding.academy.githubuser.ui.adapter.UserLoadStateAdapter
 import com.dicoding.academy.githubuser.ui.baseUI.BaseFragment
+import com.dicoding.academy.githubuser.utility.gone
+import com.dicoding.academy.githubuser.utility.visible
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
@@ -45,6 +48,21 @@ class MainFragment: BaseFragment<FragmentMainBinding>(
             header = UserLoadStateAdapter{adapter.retry()},
             footer = UserLoadStateAdapter{adapter.retry()}
         )
+
+        adapter.addLoadStateListener { loadState ->
+            val isListEmpty = loadState.refresh is LoadState.NotLoading && adapter.itemCount == 0
+            showEmptyList(isListEmpty)
+
+            binding.rvListUser.isVisible = loadState.source.refresh is LoadState.NotLoading
+        }
+    }
+
+    private fun showEmptyList(isEmpty: Boolean){
+        if (isEmpty){
+            binding.lavSearch.visible()
+        }else{
+            binding.lavSearch.gone()
+        }
     }
 
     private fun initSearch(){

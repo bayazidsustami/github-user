@@ -53,11 +53,27 @@
             android:textColorHint="@color/white_70"
             android:textSize="@dimen/default_font_size_s" />
     </com.google.android.material.appbar.AppBarLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvListUser"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        tools:listitem="@layout/item_list_user"/>
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lavSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:lottie_rawRes="@raw/waiting_search"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvListUser"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            tools:listitem="@layout/item_list_user"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
