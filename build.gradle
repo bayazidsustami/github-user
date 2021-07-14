@@ -10,6 +10,7 @@ buildscript {
         material_design_version = "1.4.0"
         constraint_version = "2.0.4"
         circle_imageView = "3.1.0"
+        lottie_version = "3.7.1"
 
         //testing
         jUnit_version = "4.13.2"
