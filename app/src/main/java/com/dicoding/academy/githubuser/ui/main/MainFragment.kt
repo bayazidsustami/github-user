@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dicoding.academy.githubuser.R
 import com.dicoding.academy.githubuser.databinding.FragmentMainBinding
 import com.dicoding.academy.githubuser.ui.adapter.UserAdapter
 import com.dicoding.academy.githubuser.ui.adapter.UserLoadStateAdapter
@@ -50,18 +51,22 @@ class MainFragment: BaseFragment<FragmentMainBinding>(
         )
 
         adapter.addLoadStateListener { loadState ->
-            val isListEmpty = loadState.refresh is LoadState.NotLoading && adapter.itemCount == 0
-            showEmptyList(isListEmpty)
 
-            binding.rvListUser.isVisible = loadState.source.refresh is LoadState.NotLoading
-        }
-    }
+            binding.rvListUser.isVisible = loadState.refresh is LoadState.NotLoading
+            binding.lavSearch.isVisible = loadState.refresh is  LoadState.NotLoading && adapter.itemCount == 0
 
-    private fun showEmptyList(isEmpty: Boolean){
-        if (isEmpty){
-            binding.lavSearch.visible()
-        }else{
-            binding.lavSearch.gone()
+            val errorState = loadState.source.append as? LoadState.Error
+                ?: loadState.source.prepend as? LoadState.Error
+                ?: loadState.append as? LoadState.Error
+                ?: loadState.prepend as? LoadState.Error
+            errorState?.let { _ ->
+                binding.lavSearch.run {
+                    playAnimation()
+                    setAnimation(R.raw.not_found)
+                    visible()
+                }
+                binding.rvListUser.gone()
+            }
         }
     }
 
