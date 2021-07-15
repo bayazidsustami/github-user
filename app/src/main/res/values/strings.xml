@@ -7,4 +7,6 @@
     <string name="following">%s Following</string>
     <string name="retry">Ulangi</string>
     <string name="search">Search</string>
+    <string name="tab_followers">Followers</string>
+    <string name="tab_following">Following</string>
 </resources>

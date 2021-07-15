@@ -2,13 +2,16 @@ package com.dicoding.academy.githubuser.ui.detail
 
 import android.os.Bundle
 import android.util.Log
+import androidx.annotation.StringRes
 import androidx.core.view.isVisible
 import com.dicoding.academy.githubuser.R
 import com.dicoding.academy.githubuser.data.dataSource.remote.response.DetailUserResponse
 import com.dicoding.academy.githubuser.databinding.FragmentDetailUserBinding
 import com.dicoding.academy.githubuser.ui.baseUI.BaseFragment
 import com.dicoding.academy.githubuser.utility.Result
+import com.dicoding.academy.githubuser.utility.reformatNumber
 import com.dicoding.academy.githubuser.utility.showImage
+import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailUserFragment: BaseFragment<FragmentDetailUserBinding>(
@@ -22,6 +25,8 @@ class DetailUserFragment: BaseFragment<FragmentDetailUserBinding>(
         if (username != null){
             viewModel.requestUserDetail(username)
         }
+
+        initViewPager()
 
         viewModel.getUserDetail.observe(viewLifecycleOwner){result ->
             when(result){
@@ -43,8 +48,8 @@ class DetailUserFragment: BaseFragment<FragmentDetailUserBinding>(
         binding.ivProfile.showImage(detail.avatarUrl)
 
         binding.tvRepositoryCount.text = resources.getString(R.string.repository, detail.publicRepos)
-        binding.tvFollowers.text = resources.getString(R.string.followers, detail.followers.toString())
-        binding.tvFollowing.text = resources.getString(R.string.following, detail.following.toString())
+        binding.tvFollowers.text = resources.getString(R.string.followers, detail.followers?.reformatNumber())
+        binding.tvFollowing.text = resources.getString(R.string.following, detail.following?.reformatNumber())
 
         binding.tvAddress.isVisible = !detail.location.isNullOrEmpty()
         binding.tvCompany.isVisible = !detail.company.isNullOrEmpty()
@@ -53,7 +58,22 @@ class DetailUserFragment: BaseFragment<FragmentDetailUserBinding>(
         binding.tvAddress.text = detail.location
     }
 
+    private fun initViewPager(){
+        val sectionAdapter = SectionPagerAdapter(this)
+        binding.vpFollow.adapter = sectionAdapter
+
+        TabLayoutMediator(binding.tlProfile, binding.vpFollow){tabs, position ->
+            tabs.text = resources.getString(TAB_TITLES[position])
+        }.attach()
+    }
+
     companion object{
         const val EXTRA_USERNAME = "extra_username"
+
+        @StringRes
+        private val TAB_TITLES = intArrayOf(
+            R.string.tab_followers,
+            R.string.tab_following
+        )
     }
 }
