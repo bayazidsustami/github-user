@@ -1,12 +1,9 @@
 package com.dicoding.academy.githubuser.utility
 
-import android.content.Context
 import android.view.View
+import android.widget.ImageView
+import com.bumptech.glide.Glide
 import kotlin.math.abs
-
-fun Context.getAvatarId(imageName: String): Int{
-    return this.resources.getIdentifier(imageName, "drawable", this.packageName)
-}
 
 fun Int.reformatNumber(): String {
     return when {
@@ -20,6 +17,13 @@ fun Int.reformatNumber(): String {
             toString()
         }
     }
+}
+
+fun ImageView.showImage(url: String?){
+    Glide.with(this.context)
+        .load(url)
+        .centerCrop()
+        .into(this)
 }
 
 fun View.visible(){

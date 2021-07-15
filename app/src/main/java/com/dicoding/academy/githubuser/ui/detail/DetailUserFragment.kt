@@ -2,9 +2,13 @@ package com.dicoding.academy.githubuser.ui.detail
 
 import android.os.Bundle
 import android.util.Log
+import androidx.core.view.isVisible
+import com.dicoding.academy.githubuser.R
+import com.dicoding.academy.githubuser.data.dataSource.remote.response.DetailUserResponse
 import com.dicoding.academy.githubuser.databinding.FragmentDetailUserBinding
 import com.dicoding.academy.githubuser.ui.baseUI.BaseFragment
 import com.dicoding.academy.githubuser.utility.Result
+import com.dicoding.academy.githubuser.utility.showImage
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailUserFragment: BaseFragment<FragmentDetailUserBinding>(
@@ -28,11 +32,25 @@ class DetailUserFragment: BaseFragment<FragmentDetailUserBinding>(
                     Log.d("RESPONSE", "ERROR")
                 }
                 is Result.Success -> {
-                    val data = result.data
-                    Log.d("RESPONSE", data.toString())
+                    Log.d("RESPONSE", result.data.toString())
+                    populateDetailUser(result.data)
                 }
             }
         }
+    }
+
+    private fun populateDetailUser(detail: DetailUserResponse){
+        binding.ivProfile.showImage(detail.avatarUrl)
+
+        binding.tvRepositoryCount.text = resources.getString(R.string.repository, detail.publicRepos)
+        binding.tvFollowers.text = resources.getString(R.string.followers, detail.followers.toString())
+        binding.tvFollowing.text = resources.getString(R.string.following, detail.following.toString())
+
+        binding.tvAddress.isVisible = !detail.location.isNullOrEmpty()
+        binding.tvCompany.isVisible = !detail.company.isNullOrEmpty()
+
+        binding.tvCompany.text = detail.company
+        binding.tvAddress.text = detail.location
     }
 
     companion object{
