@@ -9,6 +9,7 @@ import com.dicoding.academy.githubuser.networking.ApiService
 import com.dicoding.academy.githubuser.networking.RetrofitBuilder
 import com.dicoding.academy.githubuser.ui.main.MainViewModel
 import com.dicoding.academy.githubuser.ui.adapter.UserAdapter
+import com.dicoding.academy.githubuser.ui.detail.DetailUserViewModel
 import com.dicoding.academy.githubuser.utility.AppDispatcher
 import com.dicoding.academy.githubuser.utility.DispatcherProvider
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -45,6 +46,7 @@ object ApplicationModule {
 
     val viewModelModule = module {
         viewModel { MainViewModel(get()) }
+        viewModel { DetailUserViewModel(get()) }
     }
 
     val adapterModule = module {

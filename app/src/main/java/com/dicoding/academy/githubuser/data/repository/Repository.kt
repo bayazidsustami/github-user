@@ -1,8 +1,10 @@
 package com.dicoding.academy.githubuser.data.repository
 
+import androidx.lifecycle.LiveData
 import androidx.paging.PagingData
 import com.dicoding.academy.githubuser.data.dataSource.remote.response.DetailUserResponse
 import com.dicoding.academy.githubuser.data.dataSource.remote.response.UserItem
+import com.dicoding.academy.githubuser.utility.Result
 import kotlinx.coroutines.flow.Flow
 
 interface Repository {
@@ -11,6 +13,6 @@ interface Repository {
     }
 
     interface UserDetail{
-        suspend fun getUserDetail(username: String): Flow<DetailUserResponse>
+        suspend fun getUserDetail(username: String): LiveData<Result<DetailUserResponse>>
     }
 }

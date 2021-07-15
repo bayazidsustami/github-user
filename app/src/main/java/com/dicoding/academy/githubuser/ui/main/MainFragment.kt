@@ -5,6 +5,7 @@ import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +14,7 @@ import com.dicoding.academy.githubuser.databinding.FragmentMainBinding
 import com.dicoding.academy.githubuser.ui.adapter.UserAdapter
 import com.dicoding.academy.githubuser.ui.adapter.UserLoadStateAdapter
 import com.dicoding.academy.githubuser.ui.baseUI.BaseFragment
+import com.dicoding.academy.githubuser.ui.detail.DetailUserFragment
 import com.dicoding.academy.githubuser.utility.gone
 import com.dicoding.academy.githubuser.utility.visible
 import kotlinx.coroutines.Job
@@ -49,6 +51,13 @@ class MainFragment: BaseFragment<FragmentMainBinding>(
             header = UserLoadStateAdapter{adapter.retry()},
             footer = UserLoadStateAdapter{adapter.retry()}
         )
+
+        adapter.onItemClick = { item ->
+            val bundles = Bundle().apply {
+                putString(DetailUserFragment.EXTRA_USERNAME, item.login)
+            }
+            findNavController().navigate(R.id.action_mainFragment_to_detailUserFragment, bundles)
+        }
 
         adapter.addLoadStateListener { loadState ->
 

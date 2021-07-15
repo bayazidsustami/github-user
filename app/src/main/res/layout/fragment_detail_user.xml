@@ -7,7 +7,7 @@
     android:overScrollMode="never"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
-    tools:context=".ui.detail.DetailUserActivity">
+    >
 
     <include
         android:id="@+id/viewHeader"
