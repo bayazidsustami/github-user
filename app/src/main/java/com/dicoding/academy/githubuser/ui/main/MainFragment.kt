@@ -64,6 +64,8 @@ class MainFragment: BaseFragment<FragmentMainBinding>(
             binding.rvListUser.isVisible = loadState.refresh is LoadState.NotLoading
             binding.lavSearch.isVisible = loadState.refresh is  LoadState.NotLoading && adapter.itemCount == 0
 
+            isShowLoading(loadState.source.refresh is LoadState.Loading)
+
             val errorState = loadState.source.append as? LoadState.Error
                 ?: loadState.source.prepend as? LoadState.Error
                 ?: loadState.append as? LoadState.Error
@@ -76,6 +78,17 @@ class MainFragment: BaseFragment<FragmentMainBinding>(
                 }
                 binding.rvListUser.gone()
             }
+        }
+    }
+    private fun isShowLoading(isShow: Boolean){
+        if (isShow){
+            binding.viewLoading.apply {
+                root.visible()
+                errorMsg.isVisible = false
+                retryButton.isVisible = false
+            }
+        }else{
+            binding.viewLoading.root.gone()
         }
     }
 
