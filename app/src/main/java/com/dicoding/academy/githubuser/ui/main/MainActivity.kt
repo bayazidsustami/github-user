@@ -7,7 +7,7 @@ import com.dicoding.academy.githubuser.ui.baseUI.BaseActivity
 class MainActivity : BaseActivity<ActivityMainBinding>(
     ActivityMainBinding::inflate
 ) {
-    override fun initView(bind: ActivityMainBinding, savedInstanceState: Bundle?) {
+    override fun initView(savedInstanceState: Bundle?) {
 
     }
 }

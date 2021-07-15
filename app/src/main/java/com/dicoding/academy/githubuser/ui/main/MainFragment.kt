@@ -32,7 +32,7 @@ class MainFragment: BaseFragment<FragmentMainBinding>(
 
     private var searchJob: Job? = null
 
-    override fun initView(bind: FragmentMainBinding, savedInstanceState: Bundle?) {
+    override fun initView(savedInstanceState: Bundle?) {
         initAdapter()
         initSearch()
     }

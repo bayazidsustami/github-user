@@ -7,5 +7,13 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.dicoding.academy.githubuser.ui.main.MainFragment"
-        android:label="MainFragment" />
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_detailUserFragment"
+            app:destination="@id/detailUserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailUserFragment"
+        android:name="com.dicoding.academy.githubuser.ui.detail.DetailUserFragment"
+        android:label="DetailUserFragment" />
 </navigation>

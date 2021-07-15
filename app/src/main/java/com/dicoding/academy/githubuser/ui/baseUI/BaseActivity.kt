@@ -16,10 +16,10 @@ abstract class BaseActivity<B: ViewBinding>(val bindingFactory: (LayoutInflater)
         super.onCreate(savedInstanceState)
         _binding = bindingFactory(layoutInflater)
         setContentView(requireNotNull(_binding).root)
-        initView(binding, savedInstanceState)
+        initView(savedInstanceState)
     }
 
-    abstract fun initView(bind: B, savedInstanceState : Bundle?)
+    abstract fun initView(savedInstanceState : Bundle?)
 
     override fun onDestroy() {
         super.onDestroy()

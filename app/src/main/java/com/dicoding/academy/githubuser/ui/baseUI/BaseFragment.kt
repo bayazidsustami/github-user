@@ -21,10 +21,10 @@ abstract class BaseFragment<B: ViewBinding>(val bindingFactory: (LayoutInflater,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView(binding, savedInstanceState)
+        initView(savedInstanceState)
     }
 
-    abstract fun initView(bind: B, savedInstanceState: Bundle?)
+    abstract fun initView(savedInstanceState: Bundle?)
 
     override fun onDestroyView() {
         super.onDestroyView()

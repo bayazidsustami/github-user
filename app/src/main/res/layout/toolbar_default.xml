@@ -9,7 +9,7 @@
         android:id="@+id/toolbars"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/purple_700"
+        android:background="@color/purple_500"
         app:navigationIcon="@drawable/ic_arrow_back"
         android:elevation="2dp">
         <TextView
