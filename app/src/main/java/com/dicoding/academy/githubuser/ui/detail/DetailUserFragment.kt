@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.annotation.StringRes
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import com.dicoding.academy.githubuser.R
 import com.dicoding.academy.githubuser.data.dataSource.remote.response.DetailUserResponse
 import com.dicoding.academy.githubuser.databinding.FragmentDetailUserBinding
@@ -36,11 +37,11 @@ class DetailUserFragment: BaseFragment<FragmentDetailUserBinding>(
                     Log.d("RESPONSE", "ERROR")
                 }
                 is Result.Success -> {
-                    Log.d("RESPONSE", result.data.toString())
                     populateDetailUser(result.data)
                 }
             }
         }
+
     }
 
     private fun populateDetailUser(detail: DetailUserResponse){
@@ -55,6 +56,12 @@ class DetailUserFragment: BaseFragment<FragmentDetailUserBinding>(
 
         binding.tvCompany.text = detail.company
         binding.tvAddress.text = detail.location
+
+        with(binding.viewHeader){
+            tvTitle.text = resources.getString(R.string.user_detail)
+            toolbars.setNavigationOnClickListener { findNavController().navigateUp() }
+        }
+
     }
 
     private fun initViewPager(username: String){
