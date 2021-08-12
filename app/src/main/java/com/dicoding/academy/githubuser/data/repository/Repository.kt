@@ -15,4 +15,8 @@ interface Repository {
     interface UserDetail{
         suspend fun getUserDetail(username: String): LiveData<Result<DetailUserResponse>>
     }
+
+    interface UserFollow{
+        fun getUserFollow(index: Int, username: String): Flow<PagingData<UserItem>>
+    }
 }

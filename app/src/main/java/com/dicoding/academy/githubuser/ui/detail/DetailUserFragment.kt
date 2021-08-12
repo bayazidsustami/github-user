@@ -24,9 +24,8 @@ class DetailUserFragment: BaseFragment<FragmentDetailUserBinding>(
         val username = arguments?.getString(EXTRA_USERNAME)
         if (username != null){
             viewModel.requestUserDetail(username)
+            initViewPager(username)
         }
-
-        initViewPager()
 
         viewModel.getUserDetail.observe(viewLifecycleOwner){result ->
             when(result){
@@ -58,8 +57,8 @@ class DetailUserFragment: BaseFragment<FragmentDetailUserBinding>(
         binding.tvAddress.text = detail.location
     }
 
-    private fun initViewPager(){
-        val sectionAdapter = SectionPagerAdapter(this)
+    private fun initViewPager(username: String){
+        val sectionAdapter = SectionPagerAdapter(this, username)
         binding.vpFollow.adapter = sectionAdapter
 
         TabLayoutMediator(binding.tlProfile, binding.vpFollow){tabs, position ->

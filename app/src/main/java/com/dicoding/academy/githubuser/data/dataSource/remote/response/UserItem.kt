@@ -31,9 +31,6 @@ data class UserItem(
 	@field:Json(name="subscriptions_url")
 	val subscriptionsUrl: String? = null,
 
-	@field:Json(name="score")
-	val score: Double? = null,
-
 	@field:Json(name="received_events_url")
 	val receivedEventsUrl: String? = null,
 

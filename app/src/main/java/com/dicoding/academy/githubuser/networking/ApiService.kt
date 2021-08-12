@@ -1,6 +1,7 @@
 package com.dicoding.academy.githubuser.networking
 
 import com.dicoding.academy.githubuser.data.dataSource.remote.response.DetailUserResponse
+import com.dicoding.academy.githubuser.data.dataSource.remote.response.UserItem
 import com.dicoding.academy.githubuser.data.dataSource.remote.response.UserResponse
 import com.dicoding.academy.githubuser.utility.Constants.COUNT_OF_PER_PAGE
 import retrofit2.http.GET
@@ -25,5 +26,7 @@ interface ApiService {
     suspend fun getListUserFollow(
         @Path("username") username: String,
         @Path("follow") follow: String,
-    ): UserResponse
+        @Query("page") page: Int,
+        @Query("per_page") countOfPage: Int = COUNT_OF_PER_PAGE
+    ): List<UserItem>
 }

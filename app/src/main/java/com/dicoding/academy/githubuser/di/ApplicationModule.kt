@@ -4,12 +4,14 @@ import com.dicoding.academy.githubuser.data.dataSource.remote.DetailUserRemoteDa
 import com.dicoding.academy.githubuser.data.dataSource.remote.RemoteDataSource
 import com.dicoding.academy.githubuser.data.repository.Repository
 import com.dicoding.academy.githubuser.data.repository.UserDetailRepositoryImpl
-import com.dicoding.academy.githubuser.data.repository.UserSearchRepository
+import com.dicoding.academy.githubuser.data.repository.UserFollowRepositoryImpl
+import com.dicoding.academy.githubuser.data.repository.UserSearchRepositoryImpl
 import com.dicoding.academy.githubuser.networking.ApiService
 import com.dicoding.academy.githubuser.networking.RetrofitBuilder
 import com.dicoding.academy.githubuser.ui.main.MainViewModel
 import com.dicoding.academy.githubuser.ui.adapter.UserAdapter
 import com.dicoding.academy.githubuser.ui.detail.DetailUserViewModel
+import com.dicoding.academy.githubuser.ui.detail.UserFollowViewModel
 import com.dicoding.academy.githubuser.utility.AppDispatcher
 import com.dicoding.academy.githubuser.utility.DispatcherProvider
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -33,20 +35,26 @@ object ApplicationModule {
 
     val repositoryModule = module {
         fun provideUserSearchRepository(apiService: ApiService): Repository.UserSearch{
-            return UserSearchRepository(apiService)
+            return UserSearchRepositoryImpl(apiService)
         }
 
         fun provideDetailUserRepository(remoteDataSource: RemoteDataSource): Repository.UserDetail{
             return UserDetailRepositoryImpl(remoteDataSource)
         }
 
+        fun provideUserFollowRepository(apiService: ApiService): Repository.UserFollow{
+            return UserFollowRepositoryImpl(apiService)
+        }
+
         factory { provideUserSearchRepository(get()) }
         factory { provideDetailUserRepository(get()) }
+        factory { provideUserFollowRepository(get()) }
     }
 
     val viewModelModule = module {
         viewModel { MainViewModel(get()) }
         viewModel { DetailUserViewModel(get()) }
+        viewModel { UserFollowViewModel(get()) }
     }
 
     val adapterModule = module {
