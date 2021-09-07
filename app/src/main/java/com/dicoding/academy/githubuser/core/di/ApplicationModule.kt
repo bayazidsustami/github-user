@@ -1,5 +1,7 @@
 package com.dicoding.academy.githubuser.core.di
 
+import androidx.room.Room
+import com.dicoding.academy.githubuser.core.data.dataSource.local.room.GithubDatabase
 import com.dicoding.academy.githubuser.core.data.dataSource.remote.DetailUserRemoteDataSourceImpl
 import com.dicoding.academy.githubuser.core.data.dataSource.remote.RemoteDataSource
 import com.dicoding.academy.githubuser.core.data.repository.Repository
@@ -14,12 +16,25 @@ import com.dicoding.academy.githubuser.ui.detail.DetailUserViewModel
 import com.dicoding.academy.githubuser.ui.detail.UserFollowViewModel
 import com.dicoding.academy.githubuser.utility.AppDispatcher
 import com.dicoding.academy.githubuser.utility.DispatcherProvider
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 object ApplicationModule {
     val networkModule = module {
         single { RetrofitBuilder.createApiService() }
+    }
+
+    val databaseModule = module {
+        factory { get<GithubDatabase>().userDao() }
+
+        single {
+            Room.databaseBuilder(
+                androidContext(),
+                GithubDatabase::class.java,
+                "Github.db",
+            ).fallbackToDestructiveMigration().build()
+        }
     }
 
     val remoteDataSourceModule = module {

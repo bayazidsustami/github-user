@@ -2,6 +2,7 @@ package com.dicoding.academy.githubuser
 
 import android.app.Application
 import com.dicoding.academy.githubuser.core.di.ApplicationModule.adapterModule
+import com.dicoding.academy.githubuser.core.di.ApplicationModule.databaseModule
 import com.dicoding.academy.githubuser.core.di.ApplicationModule.dispatcherModule
 import com.dicoding.academy.githubuser.core.di.ApplicationModule.networkModule
 import com.dicoding.academy.githubuser.core.di.ApplicationModule.remoteDataSourceModule
@@ -22,6 +23,7 @@ open class GithubUserApp: Application() {
             modules(
                 listOf(
                     networkModule,
+                    databaseModule,
                     remoteDataSourceModule,
                     repositoryModule,
                     viewModelModule,
