@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:overScrollMode="never"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
     >
 
     <include
@@ -21,7 +20,6 @@
         app:layout_constraintTop_toBottomOf="@id/viewHeader"
         app:layout_constraintBottom_toBottomOf="parent">
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -95,7 +93,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvRepositoryCount"/>
                 <TextView
-                    android:id="@+id/tvAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     tools:text="Google. inc"
@@ -108,14 +105,12 @@
                     app:layout_constraintTop_toBottomOf="@id/tvCompany"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
             <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tlProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:tabTextColor="@color/purple_500"
                 app:tabIndicatorColor="@color/purple_500"/>
         </com.google.android.material.appbar.AppBarLayout>
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/vpFollow"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
