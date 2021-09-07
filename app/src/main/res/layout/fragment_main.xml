@@ -33,6 +33,7 @@
         </LinearLayout>
 
         <EditText
+            android:id="@+id/etSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_default"
@@ -54,6 +55,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
         <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lavSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:lottie_rawRes="@raw/waiting_search"
@@ -65,11 +67,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvListUser"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
             tools:listitem="@layout/item_list_user"/>
         <include
+            android:id="@+id/viewLoading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             layout="@layout/item_footer_loading_or_error"

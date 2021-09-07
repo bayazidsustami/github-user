@@ -58,8 +58,8 @@ class DetailUserFragment: BaseFragment<FragmentDetailUserBinding>(
         binding.tvAddress.text = detail.location
 
         with(binding.viewHeader){
-            tvTitle.text = resources.getString(R.string.user_detail)
-            toolbars.setNavigationOnClickListener { findNavController().navigateUp() }
+            title.text = resources.getString(R.string.user_detail)
+            toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
         }
 
     }
@@ -68,7 +68,7 @@ class DetailUserFragment: BaseFragment<FragmentDetailUserBinding>(
         val sectionAdapter = SectionPagerAdapter(this, username)
         binding.vpFollow.adapter = sectionAdapter
 
-        TabLayoutMediator(binding.tlProfile, binding.vpFollow){tabs, position ->
+        TabLayoutMediator(binding.tlFollow, binding.vpFollow){tabs, position ->
             tabs.text = resources.getString(TAB_TITLES[position])
         }.attach()
     }

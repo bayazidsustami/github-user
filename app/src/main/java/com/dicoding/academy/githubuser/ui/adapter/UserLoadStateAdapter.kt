@@ -28,16 +28,16 @@ class UserLoadStateAdapter(
     ): RecyclerView.ViewHolder(binding.root){
 
         init {
-            binding.retryButton.setOnClickListener { retry.invoke() }
+            binding.btnRetry.setOnClickListener { retry.invoke() }
         }
 
         fun bind(loadState: LoadState){
             if (loadState is LoadState.Error){
-                binding.errorMsg.text = loadState.error.localizedMessage
+                binding.tvError.text = loadState.error.localizedMessage
             }
-            binding.progressBar.isVisible = loadState is LoadState.Loading
-            binding.retryButton.isVisible = loadState is LoadState.Error
-            binding.errorMsg.isVisible = loadState is LoadState.Error
+            binding.pBar.isVisible = loadState is LoadState.Loading
+            binding.btnRetry.isVisible = loadState is LoadState.Error
+            binding.tvError.isVisible = loadState is LoadState.Error
         }
     }
 

@@ -65,8 +65,8 @@ class UserFollowFragment: BaseFragment<FragmentUserFollowBinding>(
         if (isShow){
             binding.viewLoading.apply {
                 root.visible()
-                errorMsg.isVisible = false
-                retryButton.isVisible = false
+                tvError.isVisible = false
+                btnRetry.isVisible = false
             }
         }else{
             binding.viewLoading.root.gone()

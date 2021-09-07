@@ -29,6 +29,7 @@
         app:layout_constraintStart_toEndOf="@id/ivProfile"
         app:layout_constraintEnd_toEndOf="parent"/>
     <TextView
+        android:id="@+id/tvType"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         tools:text="user"
