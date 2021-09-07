@@ -1,13 +1,13 @@
-package com.dicoding.academy.githubuser.di
+package com.dicoding.academy.githubuser.core.di
 
-import com.dicoding.academy.githubuser.data.dataSource.remote.DetailUserRemoteDataSourceImpl
-import com.dicoding.academy.githubuser.data.dataSource.remote.RemoteDataSource
-import com.dicoding.academy.githubuser.data.repository.Repository
-import com.dicoding.academy.githubuser.data.repository.UserDetailRepositoryImpl
-import com.dicoding.academy.githubuser.data.repository.UserFollowRepositoryImpl
-import com.dicoding.academy.githubuser.data.repository.UserSearchRepositoryImpl
-import com.dicoding.academy.githubuser.networking.ApiService
-import com.dicoding.academy.githubuser.networking.RetrofitBuilder
+import com.dicoding.academy.githubuser.core.data.dataSource.remote.DetailUserRemoteDataSourceImpl
+import com.dicoding.academy.githubuser.core.data.dataSource.remote.RemoteDataSource
+import com.dicoding.academy.githubuser.core.data.repository.Repository
+import com.dicoding.academy.githubuser.core.data.repository.UserDetailRepositoryImpl
+import com.dicoding.academy.githubuser.core.data.repository.UserFollowRepositoryImpl
+import com.dicoding.academy.githubuser.core.data.repository.UserSearchRepositoryImpl
+import com.dicoding.academy.githubuser.core.data.networking.ApiService
+import com.dicoding.academy.githubuser.core.data.networking.RetrofitBuilder
 import com.dicoding.academy.githubuser.ui.main.MainViewModel
 import com.dicoding.academy.githubuser.ui.adapter.UserAdapter
 import com.dicoding.academy.githubuser.ui.detail.DetailUserViewModel

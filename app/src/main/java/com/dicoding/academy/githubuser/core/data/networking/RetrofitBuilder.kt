@@ -1,4 +1,4 @@
-package com.dicoding.academy.githubuser.networking
+package com.dicoding.academy.githubuser.core.data.networking
 
 import com.dicoding.academy.githubuser.BuildConfig
 import okhttp3.OkHttpClient

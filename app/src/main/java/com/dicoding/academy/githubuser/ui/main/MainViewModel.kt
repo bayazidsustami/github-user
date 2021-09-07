@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.dicoding.academy.githubuser.data.dataSource.remote.response.UserItem
-import com.dicoding.academy.githubuser.data.repository.Repository
+import com.dicoding.academy.githubuser.core.data.dataSource.remote.response.UserItem
+import com.dicoding.academy.githubuser.core.data.repository.Repository
 import kotlinx.coroutines.flow.Flow
 
 class MainViewModel(

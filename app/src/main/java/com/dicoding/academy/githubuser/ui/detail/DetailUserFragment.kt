@@ -6,7 +6,7 @@ import androidx.annotation.StringRes
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.dicoding.academy.githubuser.R
-import com.dicoding.academy.githubuser.data.dataSource.remote.response.DetailUserResponse
+import com.dicoding.academy.githubuser.core.data.dataSource.remote.response.DetailUserResponse
 import com.dicoding.academy.githubuser.databinding.FragmentDetailUserBinding
 import com.dicoding.academy.githubuser.ui.baseUI.BaseFragment
 import com.dicoding.academy.githubuser.utility.Result

@@ -1,8 +1,8 @@
-package com.dicoding.academy.githubuser.networking
+package com.dicoding.academy.githubuser.core.data.networking
 
-import com.dicoding.academy.githubuser.data.dataSource.remote.response.DetailUserResponse
-import com.dicoding.academy.githubuser.data.dataSource.remote.response.UserItem
-import com.dicoding.academy.githubuser.data.dataSource.remote.response.UserResponse
+import com.dicoding.academy.githubuser.core.data.dataSource.remote.response.DetailUserResponse
+import com.dicoding.academy.githubuser.core.data.dataSource.remote.response.UserItem
+import com.dicoding.academy.githubuser.core.data.dataSource.remote.response.UserResponse
 import com.dicoding.academy.githubuser.utility.Constants.COUNT_OF_PER_PAGE
 import retrofit2.http.GET
 import retrofit2.http.Path

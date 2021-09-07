@@ -1,4 +1,4 @@
-package com.dicoding.academy.githubuser.data.dataSource.remote.response
+package com.dicoding.academy.githubuser.core.data.dataSource.remote.response
 
 import com.squareup.moshi.Json
 

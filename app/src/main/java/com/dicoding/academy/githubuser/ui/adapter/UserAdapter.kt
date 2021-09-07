@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.academy.githubuser.R
-import com.dicoding.academy.githubuser.data.dataSource.remote.response.UserItem
+import com.dicoding.academy.githubuser.core.data.dataSource.remote.response.UserItem
 import com.dicoding.academy.githubuser.databinding.ItemListUserBinding
 
 class UserAdapter: PagingDataAdapter<UserItem, UserAdapter.ViewHolder>(DIFF_UTIL) {

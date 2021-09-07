@@ -1,8 +1,8 @@
 package com.dicoding.academy.githubuser.ui.detail
 
 import androidx.lifecycle.*
-import com.dicoding.academy.githubuser.data.dataSource.remote.response.DetailUserResponse
-import com.dicoding.academy.githubuser.data.repository.Repository
+import com.dicoding.academy.githubuser.core.data.dataSource.remote.response.DetailUserResponse
+import com.dicoding.academy.githubuser.core.data.repository.Repository
 import com.dicoding.academy.githubuser.utility.Result
 
 class DetailUserViewModel(

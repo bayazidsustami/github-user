@@ -1,11 +1,11 @@
-package com.dicoding.academy.githubuser.data.repository
+package com.dicoding.academy.githubuser.core.data.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.dicoding.academy.githubuser.data.dataSource.UserPagingSource
-import com.dicoding.academy.githubuser.data.dataSource.remote.response.UserItem
-import com.dicoding.academy.githubuser.networking.ApiService
+import com.dicoding.academy.githubuser.core.data.dataSource.UserPagingSource
+import com.dicoding.academy.githubuser.core.data.dataSource.remote.response.UserItem
+import com.dicoding.academy.githubuser.core.data.networking.ApiService
 import com.dicoding.academy.githubuser.utility.Constants.COUNT_OF_PER_PAGE
 import kotlinx.coroutines.flow.Flow
 

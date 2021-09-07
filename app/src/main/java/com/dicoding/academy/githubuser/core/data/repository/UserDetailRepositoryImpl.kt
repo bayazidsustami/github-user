@@ -1,9 +1,9 @@
-package com.dicoding.academy.githubuser.data.repository
+package com.dicoding.academy.githubuser.core.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.dicoding.academy.githubuser.data.dataSource.remote.RemoteDataSource
-import com.dicoding.academy.githubuser.data.dataSource.remote.response.DetailUserResponse
+import com.dicoding.academy.githubuser.core.data.dataSource.remote.RemoteDataSource
+import com.dicoding.academy.githubuser.core.data.dataSource.remote.response.DetailUserResponse
 import com.dicoding.academy.githubuser.utility.Result
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
