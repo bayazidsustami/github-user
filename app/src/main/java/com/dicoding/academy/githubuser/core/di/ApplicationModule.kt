@@ -8,8 +8,8 @@ import com.dicoding.academy.githubuser.core.data.repository.Repository
 import com.dicoding.academy.githubuser.core.data.repository.UserDetailRepositoryImpl
 import com.dicoding.academy.githubuser.core.data.repository.UserFollowRepositoryImpl
 import com.dicoding.academy.githubuser.core.data.repository.UserSearchRepositoryImpl
-import com.dicoding.academy.githubuser.core.data.networking.ApiService
-import com.dicoding.academy.githubuser.core.data.networking.RetrofitBuilder
+import com.dicoding.academy.githubuser.core.data.dataSource.remote.networking.ApiService
+import com.dicoding.academy.githubuser.core.data.dataSource.remote.networking.RetrofitBuilder
 import com.dicoding.academy.githubuser.ui.main.MainViewModel
 import com.dicoding.academy.githubuser.ui.adapter.UserAdapter
 import com.dicoding.academy.githubuser.ui.detail.DetailUserViewModel
