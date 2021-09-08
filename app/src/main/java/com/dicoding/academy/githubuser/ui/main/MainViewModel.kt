@@ -5,11 +5,11 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.dicoding.academy.githubuser.core.data.dataSource.remote.response.UserItem
-import com.dicoding.academy.githubuser.core.data.repository.Repository
+import com.dicoding.academy.githubuser.core.domain.repository.UserSearchRepository
 import kotlinx.coroutines.flow.Flow
 
 class MainViewModel(
-    private val repository: Repository.UserSearch
+    private val repository: UserSearchRepository
 ): ViewModel() {
     private var currentQueryValue: String? = null
     private var currentSearchResult: Flow<PagingData<UserItem>>? = null
@@ -21,7 +21,7 @@ class MainViewModel(
         }
         currentQueryValue = query
 
-        val newResult: Flow<PagingData<UserItem>> = repository.getUserSearch(query)
+        val newResult: Flow<PagingData<UserItem>> = repository.searchUser(query)
             .cachedIn(viewModelScope)
         currentSearchResult = newResult
         return newResult

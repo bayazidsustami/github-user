@@ -1,15 +1,22 @@
 package com.dicoding.academy.githubuser.core.di
 
 import androidx.room.Room
+import com.dicoding.academy.githubuser.core.data.dataSource.local.DetailUserLocalDataSourceImpl
+import com.dicoding.academy.githubuser.core.data.dataSource.local.LocalDataSource
 import com.dicoding.academy.githubuser.core.data.dataSource.local.room.GithubDatabase
+import com.dicoding.academy.githubuser.core.data.dataSource.local.room.dao.DetailUserDao
 import com.dicoding.academy.githubuser.core.data.dataSource.remote.DetailUserRemoteDataSourceImpl
 import com.dicoding.academy.githubuser.core.data.dataSource.remote.RemoteDataSource
-import com.dicoding.academy.githubuser.core.data.repository.Repository
 import com.dicoding.academy.githubuser.core.data.repository.UserDetailRepositoryImpl
 import com.dicoding.academy.githubuser.core.data.repository.UserFollowRepositoryImpl
 import com.dicoding.academy.githubuser.core.data.repository.UserSearchRepositoryImpl
 import com.dicoding.academy.githubuser.core.data.dataSource.remote.networking.ApiService
 import com.dicoding.academy.githubuser.core.data.dataSource.remote.networking.RetrofitBuilder
+import com.dicoding.academy.githubuser.core.domain.repository.UserDetailRepository
+import com.dicoding.academy.githubuser.core.domain.repository.UserFollowRepository
+import com.dicoding.academy.githubuser.core.domain.repository.UserSearchRepository
+import com.dicoding.academy.githubuser.core.domain.useCase.DetailUserUseCase
+import com.dicoding.academy.githubuser.core.domain.useCase.DetailUserUseCaseImpl
 import com.dicoding.academy.githubuser.ui.main.MainViewModel
 import com.dicoding.academy.githubuser.ui.adapter.UserAdapter
 import com.dicoding.academy.githubuser.ui.detail.DetailUserViewModel
@@ -26,7 +33,7 @@ object ApplicationModule {
     }
 
     val databaseModule = module {
-        factory { get<GithubDatabase>().userDao() }
+        factory { get<GithubDatabase>().detailUserDao() }
 
         single {
             Room.databaseBuilder(
@@ -37,11 +44,19 @@ object ApplicationModule {
         }
     }
 
+    val localDataSourceModule = module {
+        fun providerDetailUserLocalDataSource(userDao: DetailUserDao): LocalDataSource {
+            return DetailUserLocalDataSourceImpl(userDao)
+        }
+
+        factory { providerDetailUserLocalDataSource(get()) }
+    }
+
     val remoteDataSourceModule = module {
         fun provideDetailUserRemoteDataSource(
             apiService: ApiService,
             dispatcher: DispatcherProvider
-        ): RemoteDataSource{
+        ): RemoteDataSource {
             return DetailUserRemoteDataSourceImpl(apiService, dispatcher)
         }
 
@@ -49,21 +64,32 @@ object ApplicationModule {
     }
 
     val repositoryModule = module {
-        fun provideUserSearchRepository(apiService: ApiService): Repository.UserSearch{
+        fun provideUserSearchRepository(apiService: ApiService): UserSearchRepository {
             return UserSearchRepositoryImpl(apiService)
         }
 
-        fun provideDetailUserRepository(remoteDataSource: RemoteDataSource): Repository.UserDetail{
-            return UserDetailRepositoryImpl(remoteDataSource)
+        fun provideDetailUserRepository(
+            remoteDataSource: RemoteDataSource,
+            localDataSource: LocalDataSource
+        ): UserDetailRepository {
+            return UserDetailRepositoryImpl(remoteDataSource, localDataSource)
         }
 
-        fun provideUserFollowRepository(apiService: ApiService): Repository.UserFollow{
+        fun provideUserFollowRepository(apiService: ApiService): UserFollowRepository {
             return UserFollowRepositoryImpl(apiService)
         }
 
         factory { provideUserSearchRepository(get()) }
-        factory { provideDetailUserRepository(get()) }
+        factory { provideDetailUserRepository(get(), get()) }
         factory { provideUserFollowRepository(get()) }
+    }
+
+    val domainModule = module {
+        fun provideDetailUserUseCase(repository: UserDetailRepository): DetailUserUseCase {
+            return DetailUserUseCaseImpl(repository)
+        }
+
+        factory { provideDetailUserUseCase(get()) }
     }
 
     val viewModelModule = module {
@@ -77,7 +103,7 @@ object ApplicationModule {
     }
 
     val dispatcherModule = module {
-        fun provideDispatcherProvider(): DispatcherProvider{
+        fun provideDispatcherProvider(): DispatcherProvider {
             return AppDispatcher()
         }
         factory { provideDispatcherProvider() }

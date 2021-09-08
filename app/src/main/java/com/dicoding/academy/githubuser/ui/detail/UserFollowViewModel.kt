@@ -5,11 +5,11 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.dicoding.academy.githubuser.core.data.dataSource.remote.response.UserItem
-import com.dicoding.academy.githubuser.core.data.repository.Repository
+import com.dicoding.academy.githubuser.core.domain.repository.UserFollowRepository
 import kotlinx.coroutines.flow.Flow
 
 class UserFollowViewModel(
-    private val repository: Repository.UserFollow
+    private val repository: UserFollowRepository
 ): ViewModel() {
     private var currentUsername: String? = null
     private var currentResult: Flow<PagingData<UserItem>>? = null

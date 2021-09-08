@@ -6,12 +6,13 @@ import androidx.paging.PagingData
 import com.dicoding.academy.githubuser.core.data.dataSource.UserFollowPagingSource
 import com.dicoding.academy.githubuser.core.data.dataSource.remote.response.UserItem
 import com.dicoding.academy.githubuser.core.data.dataSource.remote.networking.ApiService
+import com.dicoding.academy.githubuser.core.domain.repository.UserFollowRepository
 import com.dicoding.academy.githubuser.utility.Constants.COUNT_OF_PER_PAGE
 import kotlinx.coroutines.flow.Flow
 
 class UserFollowRepositoryImpl(
     private val apiService: ApiService
-): Repository.UserFollow {
+): UserFollowRepository {
     override fun getUserFollow(index: Int, username: String): Flow<PagingData<UserItem>> {
         return Pager(
             config = PagingConfig(

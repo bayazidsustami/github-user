@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class DetailUserEntity(
     @PrimaryKey val id: Int,
     @ColumnInfo(name="login") val login: String,
-    @ColumnInfo(name = "company") val company: String,
+    @ColumnInfo(name = "company") val company: String?,
     @ColumnInfo(name = "public_repos") val publicRepos: Int?,
     @ColumnInfo(name = "followers") val followers: Int?,
     @ColumnInfo(name = "avatar_url") val avatarUrl: String?,

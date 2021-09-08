@@ -1,27 +1,41 @@
 package com.dicoding.academy.githubuser.core.data.repository
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import com.dicoding.academy.githubuser.core.common.DataMapper.mapDetailToDomain
+import com.dicoding.academy.githubuser.core.common.DataMapper.mapDetailToEntity
+import com.dicoding.academy.githubuser.core.common.DataMapper.mapResponseDetailToDomain
+import com.dicoding.academy.githubuser.core.data.dataSource.local.LocalDataSource
 import com.dicoding.academy.githubuser.core.data.dataSource.remote.RemoteDataSource
-import com.dicoding.academy.githubuser.core.data.dataSource.remote.response.DetailUserResponse
+import com.dicoding.academy.githubuser.core.domain.model.DetailUserUIModel
+import com.dicoding.academy.githubuser.core.domain.repository.UserDetailRepository
 import com.dicoding.academy.githubuser.utility.Result
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class UserDetailRepositoryImpl(
-    private val remoteDataSource: RemoteDataSource
-): Repository.UserDetail {
-    override suspend fun getUserDetail(username: String): LiveData<Result<DetailUserResponse>> {
-        val result = MutableLiveData<Result<DetailUserResponse>>()
-        remoteDataSource.getDetailUser(username)
-            .onStart {
-                result.postValue(Result.Loading(data = null))
-            }.catch {
-                result.postValue(Result.Error(data = null, message = it.message))
-            }.collect {
-                result.postValue(Result.Success(data = it))
+    private val remoteDataSource: RemoteDataSource,
+    private val localDataSource: LocalDataSource
+): UserDetailRepository {
+    override suspend fun getUserDetail(username: String): Flow<Result<DetailUserUIModel>> {
+        return remoteDataSource.getDetailUser(username).map {
+            when(it){
+                is Result.Loading -> {
+                    Result.Loading(data = null)
+                }
+                is Result.Success -> {
+                    Result.Success(data = it.data.mapResponseDetailToDomain())
+                }
+                is Result.Error -> {
+                    Result.Error<DetailUserUIModel>(code = it.code, message = it.message, data = null)
+                }
             }
-        return result
+        }
+    }
+
+    override fun getUser(username: String): Flow<DetailUserUIModel> {
+        return localDataSource.getUserDetail(username).map { it.mapDetailToDomain() }
+    }
+
+    override suspend fun saveUser(user: DetailUserUIModel) {
+        return localDataSource.saveUser(user.mapDetailToEntity())
     }
 }
