@@ -1,5 +1,6 @@
 package com.dicoding.academy.githubuser.core.data.repository
 
+import android.util.Log
 import com.dicoding.academy.githubuser.core.common.DataMapper.mapDetailToDomain
 import com.dicoding.academy.githubuser.core.common.DataMapper.mapDetailToEntity
 import com.dicoding.academy.githubuser.core.common.DataMapper.mapResponseDetailToDomain
@@ -8,30 +9,35 @@ import com.dicoding.academy.githubuser.core.data.dataSource.remote.RemoteDataSou
 import com.dicoding.academy.githubuser.core.domain.model.DetailUserUIModel
 import com.dicoding.academy.githubuser.core.domain.repository.UserDetailRepository
 import com.dicoding.academy.githubuser.utility.Result
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.*
 
 class UserDetailRepositoryImpl(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource
 ): UserDetailRepository {
     override suspend fun getUserDetail(username: String): Flow<Result<DetailUserUIModel>> {
-        if (localDataSource.getUserIfExists(username).first()){
-            return localDataSource.getUserDetail(username).map {
-                Result.Success(it.mapDetailToDomain())
-            }
-        }else{
-            return remoteDataSource.getDetailUser(username).map {
-                when(it){
-                    is Result.Loading -> {
-                        Result.Loading(data = null)
-                    }
-                    is Result.Success -> {
-                        Result.Success(data = it.data.mapResponseDetailToDomain())
-                    }
-                    is Result.Error -> {
-                        Result.Error<DetailUserUIModel>(code = it.code, message = it.message, data = null)
+        return flow {
+            emit(Result.Loading(null))
+            val isExists = localDataSource.getUserIfExists(username).first()
+            if (isExists){
+                Log.d("DATAS", "LOCALS")
+                emitAll(localDataSource.getUserDetail(username).map {
+                    Log.d("DATAS", "LOCALSM")
+                    Result.Success(it.mapDetailToDomain())
+                })
+            }else{
+                remoteDataSource.getDetailUser(username).collect {
+                    when(it){
+                        is Result.Success -> {
+                            Log.d("DATAS", it.data.toString())
+                            emit(Result.Success(it.data.mapResponseDetailToDomain()))
+                        }
+                        is Result.Error -> {
+                            emit(Result.Error(it.code, null, it.message))
+                        }
+                        is Result.Loading -> {
+                            emit(Result.Loading(null))
+                        }
                     }
                 }
             }

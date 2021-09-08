@@ -1,5 +1,6 @@
 package com.dicoding.academy.githubuser.core.data.dataSource.remote
 
+import android.util.Log
 import com.dicoding.academy.githubuser.core.data.dataSource.remote.response.DetailUserResponse
 import com.dicoding.academy.githubuser.core.data.dataSource.remote.networking.ApiService
 import com.dicoding.academy.githubuser.utility.DispatcherProvider
@@ -15,6 +16,7 @@ class DetailUserRemoteDataSourceImpl(
     private val dispatcher: DispatcherProvider
 ): RemoteDataSource {
     override suspend fun getDetailUser(username: String): Flow<Result<DetailUserResponse>> {
+        Log.d("DATAS", "REMOTE")
         return flow {
             emit(Result.Loading(data = null))
             try {

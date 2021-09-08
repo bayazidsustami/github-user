@@ -85,9 +85,9 @@ class DetailUserFragment: BaseFragment<FragmentDetailUserBinding>(
                 isFavorite = !isFavorite
                 setButton(isFavorite)
                 setSnackBar(isFavorite)
-                if (detailUser != null){
-                    detailUser?.isFavorite = isFavorite
-                    viewModel.saveUser(detailUser!!)
+                detailUser?.let { details->
+                    details.isFavorite = isFavorite
+                    viewModel.saveUser(details)
                 }
             }
         })

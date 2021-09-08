@@ -1,5 +1,6 @@
 package com.dicoding.academy.githubuser.core.domain.useCase
 
+import android.util.Log
 import com.dicoding.academy.githubuser.core.domain.model.DetailUserUIModel
 import com.dicoding.academy.githubuser.core.domain.repository.UserDetailRepository
 import com.dicoding.academy.githubuser.utility.Result
@@ -17,6 +18,7 @@ class DetailUserUseCaseImpl constructor(
     }
 
     override suspend fun saveUser(user: DetailUserUIModel) {
+        Log.d("REPO", user.toString())
         repository.saveUser(user)
     }
 
