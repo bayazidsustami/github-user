@@ -1,10 +1,11 @@
 package com.dicoding.academy.githubuser.core.data.dataSource.local.entity
 
 import androidx.room.ColumnInfo
+import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+@Entity(tableName = "user_item_entity")
 data class UserItemEntity(
-
     @PrimaryKey
     @ColumnInfo(name = "id_user")
     val id: Int,
