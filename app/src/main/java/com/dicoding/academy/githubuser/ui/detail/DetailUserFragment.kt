@@ -47,27 +47,29 @@ class DetailUserFragment: BaseFragment<FragmentDetailUserBinding>(
     }
 
     private fun populateDetailUser(detail: DetailUserUIModel){
-        binding.ivProfile.showImage(detail.avatarUrl)
+        binding.apply {
+            ivProfile.showImage(detail.avatarUrl)
 
-        binding.tvRepositoryCount.text = resources.getString(R.string.repository, detail.publicRepos)
-        binding.tvFollowers.text = resources.getString(R.string.followers, detail.followers?.reformatNumber())
-        binding.tvFollowing.text = resources.getString(R.string.following, detail.following?.reformatNumber())
+            tvRepositoryCount.text = resources.getString(R.string.repository, detail.publicRepos)
+            tvFollowers.text = resources.getString(R.string.followers, detail.followers?.reformatNumber())
+            tvFollowing.text = resources.getString(R.string.following, detail.following?.reformatNumber())
 
-        binding.tvAddress.isVisible = !detail.location.isNullOrEmpty()
-        binding.tvCompany.isVisible = !detail.company.isNullOrEmpty()
+            tvAddress.isVisible = !detail.location.isNullOrEmpty()
+            tvCompany.isVisible = !detail.company.isNullOrEmpty()
 
-        binding.tvCompany.text = detail.company
-        binding.tvAddress.text = detail.location
+            tvCompany.text = detail.company
+            tvAddress.text = detail.location
 
-        with(binding.viewHeader){
-            title.text = resources.getString(R.string.user_detail)
-            toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
-        }
+            with(viewHeader){
+                title.text = resources.getString(R.string.user_detail)
+                toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
+            }
 
-        var favorite = false
-        binding.fabFavorite.setOnClickListener {
-            favorite = !favorite
-            setFavorite(favorite)
+            var favorite = false
+            fabFavorite.setOnClickListener {
+                favorite = !favorite
+                setFavorite(favorite)
+            }
         }
 
     }
