@@ -1,4 +1,4 @@
-package com.dicoding.academy.githubuser.core.data.dataSource.local.dao
+package com.dicoding.academy.githubuser.core.data.dataSource.local.room.dao
 
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
