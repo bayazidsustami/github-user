@@ -3,6 +3,7 @@ package com.dicoding.academy.githubuser.ui.detail
 import android.os.Bundle
 import android.util.Log
 import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.dicoding.academy.githubuser.R
@@ -12,6 +13,7 @@ import com.dicoding.academy.githubuser.ui.baseUI.BaseFragment
 import com.dicoding.academy.githubuser.utility.Result
 import com.dicoding.academy.githubuser.utility.reformatNumber
 import com.dicoding.academy.githubuser.utility.showImage
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -62,6 +64,26 @@ class DetailUserFragment: BaseFragment<FragmentDetailUserBinding>(
             toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
         }
 
+        var favorite = false
+        binding.fabFavorite.setOnClickListener {
+            favorite = !favorite
+            setFavorite(favorite)
+        }
+
+    }
+
+    private fun setFavorite(isFavorite: Boolean){
+        if (isFavorite){
+            binding.fabFavorite.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite))
+            showSnackBar("Favorite added")
+        }else{
+            binding.fabFavorite.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_unfavorite))
+            showSnackBar("Favorite remove")
+        }
+    }
+
+    private fun showSnackBar(text: String){
+        Snackbar.make(binding.rootCoordinator, text, Snackbar.LENGTH_SHORT).show()
     }
 
     private fun initViewPager(username: String){
