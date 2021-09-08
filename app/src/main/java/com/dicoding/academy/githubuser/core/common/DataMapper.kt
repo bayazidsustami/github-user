@@ -8,13 +8,13 @@ object DataMapper {
 
     fun DetailUserEntity.mapDetailToDomain(): DetailUserUIModel{
         return DetailUserUIModel(
-            id, login, company, publicRepos, followers, avatarUrl, following, name, location
+            id, login, company, publicRepos, followers, avatarUrl, following, name, location, isFavorite
         )
     }
 
     fun DetailUserUIModel.mapDetailToEntity(): DetailUserEntity{
         return DetailUserEntity(
-            id, login, company, publicRepos, followers, avatarUrl, following, name, location
+            id, login, company, publicRepos, followers, avatarUrl, following, name, location, isFavorite
         )
     }
 
@@ -28,7 +28,8 @@ object DataMapper {
             following = following,
             name = name!!,
             avatarUrl = avatarUrl,
-            location = location
+            location = location,
+            isFavorite = false
         )
     }
 }

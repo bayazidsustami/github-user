@@ -1,9 +1,6 @@
 package com.dicoding.academy.githubuser.ui.detail
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.dicoding.academy.githubuser.core.domain.model.DetailUserUIModel
 import com.dicoding.academy.githubuser.core.domain.useCase.DetailUserUseCase
 import com.dicoding.academy.githubuser.utility.Result
@@ -39,6 +36,22 @@ class DetailUserViewModel(
                 }
             }
         }
+    }
+
+    fun saveUser(user: DetailUserUIModel){
+        viewModelScope.launch {
+            useCase.saveUser(user)
+        }
+    }
+
+    private var userId = MutableLiveData<String>()
+
+    fun setUserId(username: String){
+        userId.value = username
+    }
+
+    val isFavoriteUser = userId.switchMap {
+        useCase.getUserIfExists(it).asLiveData()
     }
 
 }

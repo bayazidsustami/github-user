@@ -12,6 +12,14 @@ class DetailUserLocalDataSourceImpl(
     }
 
     override suspend fun saveUser(user: DetailUserEntity) {
-        return userDao.saveUser(user)
+        if (user.isFavorite){
+            userDao.saveUser(user)
+        }else{
+            userDao.deleteUser(user)
+        }
+    }
+
+    override fun getUserIfExists(username: String): Flow<Boolean> {
+        return userDao.getIfIsFavorite(username)
     }
 }

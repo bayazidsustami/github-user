@@ -15,4 +15,5 @@ data class DetailUserEntity(
     @ColumnInfo(name = "following") val following: Int?,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "location") val location: String?,
+    @ColumnInfo(name = "isFavorite") val isFavorite: Boolean
 )

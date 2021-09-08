@@ -10,4 +10,5 @@ data class DetailUserUIModel(
     val following: Int?,
     val name: String,
     val location: String?,
+    var isFavorite: Boolean
 )

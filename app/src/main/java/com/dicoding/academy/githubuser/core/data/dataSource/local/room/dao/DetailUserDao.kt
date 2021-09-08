@@ -1,6 +1,7 @@
 package com.dicoding.academy.githubuser.core.data.dataSource.local.room.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Query
 import com.dicoding.academy.githubuser.core.data.dataSource.local.entity.DetailUserEntity
 import kotlinx.coroutines.flow.Flow
@@ -14,4 +15,10 @@ abstract class DetailUserDao: BaseDao<DetailUserEntity>() {
     suspend fun saveUser(user: DetailUserEntity){
         insert(user)
     }
+
+    @Query("SELECT EXISTS(SELECT * FROM detail_user_entity WHERE login=:username)")
+    abstract fun getIfIsFavorite(username: String): Flow<Boolean>
+
+    @Delete
+    abstract suspend fun deleteUser(user: DetailUserEntity)
 }

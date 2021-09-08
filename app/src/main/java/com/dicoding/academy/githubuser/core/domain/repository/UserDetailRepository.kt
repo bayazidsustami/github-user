@@ -8,4 +8,5 @@ interface UserDetailRepository {
     suspend fun getUserDetail(username: String): Flow<Result<DetailUserUIModel>>
     fun getUser(username: String): Flow<DetailUserUIModel>
     suspend fun saveUser(user: DetailUserUIModel)
+    fun getUserIfExists(username: String): Flow<Boolean>
 }

@@ -23,10 +23,15 @@ class DetailUserFragment: BaseFragment<FragmentDetailUserBinding>(
 
     private val viewModel: DetailUserViewModel by viewModel()
 
+    private var isFavorite = false
+
+    private var detailUser: DetailUserUIModel? = null
+
     override fun initView(savedInstanceState: Bundle?) {
         val username = arguments?.getString(EXTRA_USERNAME)
         if (username != null){
             viewModel.requestUserDetail(username)
+            viewModel.setUserId(username)
             initViewPager(username)
         }
 
@@ -36,7 +41,7 @@ class DetailUserFragment: BaseFragment<FragmentDetailUserBinding>(
                     Log.d("RESPONSE", "LOADING")
                 }
                 is Result.Error -> {
-                    Log.d("RESPONSE", "ERROR")
+                    showSnackBar(result.message)
                 }
                 is Result.Success -> {
                     populateDetailUser(result.data)
@@ -44,9 +49,12 @@ class DetailUserFragment: BaseFragment<FragmentDetailUserBinding>(
             }
         }
 
+        observeIsFavorite()
+
     }
 
     private fun populateDetailUser(detail: DetailUserUIModel){
+        detailUser = detail
         binding.apply {
             ivProfile.showImage(detail.avatarUrl)
 
@@ -64,28 +72,47 @@ class DetailUserFragment: BaseFragment<FragmentDetailUserBinding>(
                 title.text = resources.getString(R.string.user_detail)
                 toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
             }
-
-            var favorite = false
-            fabFavorite.setOnClickListener {
-                favorite = !favorite
-                setFavorite(favorite)
-            }
         }
 
     }
 
-    private fun setFavorite(isFavorite: Boolean){
+    private fun observeIsFavorite(){
+        viewModel.isFavoriteUser.observe(viewLifecycleOwner, {
+            setButton(it)
+            isFavorite = it
+
+            binding.fabFavorite.setOnClickListener {
+                isFavorite = !isFavorite
+                setButton(isFavorite)
+                setSnackBar(isFavorite)
+                if (detailUser != null){
+                    detailUser?.isFavorite = isFavorite
+                    viewModel.saveUser(detailUser!!)
+                }
+            }
+        })
+    }
+
+    private fun setButton(isFavorite: Boolean){
         if (isFavorite){
             binding.fabFavorite.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite))
-            showSnackBar("Favorite added")
         }else{
             binding.fabFavorite.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_unfavorite))
-            showSnackBar("Favorite remove")
         }
     }
 
-    private fun showSnackBar(text: String){
-        Snackbar.make(binding.rootCoordinator, text, Snackbar.LENGTH_SHORT).show()
+    private fun setSnackBar(isFavorite: Boolean){
+        if (isFavorite){
+            showSnackBar("Favorite added")
+        }else{
+            showSnackBar("Favorite removed")
+        }
+    }
+
+    private fun showSnackBar(text: String?){
+        if (text != null) {
+            Snackbar.make(binding.rootCoordinator, text, Snackbar.LENGTH_SHORT).show()
+        }
     }
 
     private fun initViewPager(username: String){

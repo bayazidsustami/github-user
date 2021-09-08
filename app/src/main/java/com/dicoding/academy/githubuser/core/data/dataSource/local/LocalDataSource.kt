@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 interface LocalDataSource {
     fun getUserDetail(username: String): Flow<DetailUserEntity>
     suspend fun saveUser(user: DetailUserEntity)
+    fun getUserIfExists(username: String): Flow<Boolean>
 }

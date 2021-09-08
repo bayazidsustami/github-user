@@ -19,4 +19,8 @@ class DetailUserUseCaseImpl constructor(
     override suspend fun saveUser(user: DetailUserUIModel) {
         repository.saveUser(user)
     }
+
+    override fun getUserIfExists(username: String): Flow<Boolean> {
+        return repository.getUserIfExists(username)
+    }
 }
