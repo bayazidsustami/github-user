@@ -2,6 +2,7 @@ package com.dicoding.academy.githubuser.core.common
 
 import com.dicoding.academy.githubuser.core.data.dataSource.local.entity.DetailUserEntity
 import com.dicoding.academy.githubuser.core.data.dataSource.remote.response.DetailUserResponse
+import com.dicoding.academy.githubuser.core.data.dataSource.remote.response.UserItem
 import com.dicoding.academy.githubuser.core.domain.model.DetailUserUIModel
 
 object DataMapper {
@@ -30,6 +31,15 @@ object DataMapper {
             avatarUrl = avatarUrl,
             location = location,
             isFavorite = false
+        )
+    }
+
+    fun DetailUserUIModel.mapToFitAdapterUser(): UserItem{
+        return UserItem(
+            id = id,
+            login = login,
+            avatarUrl = avatarUrl,
+            type = "User",
         )
     }
 }

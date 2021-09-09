@@ -12,7 +12,7 @@ import com.dicoding.academy.githubuser.databinding.ItemListUserBinding
 
 class UserAdapter: PagingDataAdapter<UserItem, UserAdapter.ViewHolder>(DIFF_UTIL) {
 
-    internal var onItemClick: ((UserItem) -> Unit)? = null
+    internal var onItemClick: ((String?) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -40,7 +40,7 @@ class UserAdapter: PagingDataAdapter<UserItem, UserAdapter.ViewHolder>(DIFF_UTIL
                 .into(binding.ivProfile)
 
             binding.root.setOnClickListener {
-                onItemClick?.invoke(data)
+                onItemClick?.invoke(data.login)
             }
         }
     }

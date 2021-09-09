@@ -37,6 +37,10 @@ class MainFragment: BaseFragment<FragmentMainBinding>(
     override fun initView(savedInstanceState: Bundle?) {
         initAdapter()
         initSearch()
+
+        binding.btnFavorite.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_favoriteFragment)
+        }
     }
 
     private fun initAdapter(){
@@ -54,7 +58,7 @@ class MainFragment: BaseFragment<FragmentMainBinding>(
 
         adapter.onItemClick = { item ->
             val bundles = Bundle().apply {
-                putString(DetailUserFragment.EXTRA_USERNAME, item.login)
+                putString(DetailUserFragment.EXTRA_USERNAME, item)
             }
             findNavController().navigate(R.id.action_mainFragment_to_detailUserFragment, bundles)
         }

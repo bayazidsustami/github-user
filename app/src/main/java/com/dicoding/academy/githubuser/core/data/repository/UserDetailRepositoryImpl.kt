@@ -1,6 +1,9 @@
 package com.dicoding.academy.githubuser.core.data.repository
 
 import android.util.Log
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.dicoding.academy.githubuser.core.common.DataMapper.mapDetailToDomain
 import com.dicoding.academy.githubuser.core.common.DataMapper.mapDetailToEntity
 import com.dicoding.academy.githubuser.core.common.DataMapper.mapResponseDetailToDomain
@@ -20,9 +23,9 @@ class UserDetailRepositoryImpl(
             emit(Result.Loading(null))
             val isExists = localDataSource.getUserIfExists(username).first()
             if (isExists){
-                Log.d("DATAS", "LOCALS")
+                Log.d("DATAS", "LOCALS $isExists")
                 emitAll(localDataSource.getUserDetail(username).map {
-                    Log.d("DATAS", "LOCALSM")
+                    Log.d("DATAS", "LOCALSM $isExists")
                     Result.Success(it.mapDetailToDomain())
                 })
             }else{
@@ -42,6 +45,19 @@ class UserDetailRepositoryImpl(
                 }
             }
         }
+    }
+
+    override fun getAllUser(): Flow<PagingData<DetailUserUIModel>> {
+        val pagingSource = localDataSource.getAllFavoriteUser().map {
+            it.mapDetailToDomain()
+        }.asPagingSourceFactory()
+        return Pager(
+            config = PagingConfig(
+                pageSize = 10,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = pagingSource
+        ).flow
     }
 
     override fun getUser(username: String): Flow<DetailUserUIModel> {

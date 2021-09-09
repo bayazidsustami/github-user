@@ -21,6 +21,7 @@ import com.dicoding.academy.githubuser.ui.main.MainViewModel
 import com.dicoding.academy.githubuser.ui.adapter.UserAdapter
 import com.dicoding.academy.githubuser.ui.detail.DetailUserViewModel
 import com.dicoding.academy.githubuser.ui.detail.UserFollowViewModel
+import com.dicoding.academy.githubuser.ui.favoite.FavoriteViewModel
 import com.dicoding.academy.githubuser.utility.AppDispatcher
 import com.dicoding.academy.githubuser.utility.DispatcherProvider
 import org.koin.android.ext.koin.androidContext
@@ -96,6 +97,7 @@ object ApplicationModule {
         viewModel { MainViewModel(get()) }
         viewModel { DetailUserViewModel(get()) }
         viewModel { UserFollowViewModel(get()) }
+        viewModel { FavoriteViewModel(get()) }
     }
 
     val adapterModule = module {
