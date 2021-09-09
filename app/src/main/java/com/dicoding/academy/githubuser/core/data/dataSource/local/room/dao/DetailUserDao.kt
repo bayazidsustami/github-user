@@ -34,5 +34,5 @@ abstract class DetailUserDao: BaseDao<DetailUserEntity>() {
     abstract fun selectByName(username: String): Cursor
 
     @Query("DELETE FROM detail_user_entity WHERE login=:username")
-    abstract fun deleteByName(username: String): Cursor
+    abstract fun deleteByName(username: String): Int
 }
