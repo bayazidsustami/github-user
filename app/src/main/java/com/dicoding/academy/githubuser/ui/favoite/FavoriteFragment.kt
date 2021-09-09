@@ -1,8 +1,10 @@
 package com.dicoding.academy.githubuser.ui.favoite
 
 import android.os.Bundle
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.academy.githubuser.R
@@ -15,7 +17,7 @@ import kotlinx.coroutines.flow.collectLatest
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class FavoriteFragment: BaseFragment<FragmentFavoriteBinding>(
+class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(
     FragmentFavoriteBinding::inflate
 ) {
 
@@ -24,25 +26,7 @@ class FavoriteFragment: BaseFragment<FragmentFavoriteBinding>(
     private val adapter: UserAdapter by inject()
 
     override fun initView(savedInstanceState: Bundle?) {
-        with(binding.rvListUser){
-            hasFixedSize()
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = this@FavoriteFragment.adapter
-            addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
-        }
-
-        binding.rvListUser.adapter = adapter.withLoadStateHeaderAndFooter(
-            header = UserLoadStateAdapter{adapter.retry()},
-            footer = UserLoadStateAdapter{adapter.retry()}
-        )
-
-        adapter.onItemClick = { item ->
-            val bundles = Bundle().apply {
-                putString(DetailUserFragment.EXTRA_USERNAME, item)
-            }
-            findNavController().navigate(R.id.action_favoriteFragment_to_detailUserFragment, bundles)
-        }
-
+        initAdapter()
         lifecycleScope.launchWhenCreated {
             viewModel.favoriteUser.collectLatest {
                 adapter.submitData(it)
@@ -54,6 +38,35 @@ class FavoriteFragment: BaseFragment<FragmentFavoriteBinding>(
             title.text = getString(R.string.favorite)
         }
 
+    }
+
+    private fun initAdapter() {
+        with(binding.rvListUser) {
+            hasFixedSize()
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = this@FavoriteFragment.adapter
+            addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
+        }
+
+        binding.rvListUser.adapter = adapter.withLoadStateHeaderAndFooter(
+            header = UserLoadStateAdapter { adapter.retry() },
+            footer = UserLoadStateAdapter { adapter.retry() }
+        )
+
+        adapter.addLoadStateListener {
+            binding.lavNotFound.isVisible =
+                it.refresh is LoadState.NotLoading && adapter.itemCount == 0
+        }
+
+        adapter.onItemClick = { item ->
+            val bundles = Bundle().apply {
+                putString(DetailUserFragment.EXTRA_USERNAME, item)
+            }
+            findNavController().navigate(
+                R.id.action_favoriteFragment_to_detailUserFragment,
+                bundles
+            )
+        }
     }
 
 }
