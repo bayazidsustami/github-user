@@ -89,6 +89,9 @@ class DetailUserFragment: BaseFragment<FragmentDetailUserBinding>(
                     details.isFavorite = isFavorite
                     viewModel.saveUser(details)
                 }
+                if (!isFavorite){
+                    findNavController().navigateUp()
+                }
             }
         })
     }

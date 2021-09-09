@@ -49,7 +49,11 @@ class FavoriteFragment: BaseFragment<FragmentFavoriteBinding>(
             }
         }
 
-        binding.toolbar.toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
+        binding.viewHeader.run {
+            toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
+            title.text = getString(R.string.favorite)
+        }
+
     }
 
 }
