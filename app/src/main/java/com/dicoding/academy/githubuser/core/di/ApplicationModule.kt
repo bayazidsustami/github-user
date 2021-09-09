@@ -15,8 +15,7 @@ import com.dicoding.academy.githubuser.core.data.dataSource.remote.networking.Re
 import com.dicoding.academy.githubuser.core.domain.repository.UserDetailRepository
 import com.dicoding.academy.githubuser.core.domain.repository.UserFollowRepository
 import com.dicoding.academy.githubuser.core.domain.repository.UserSearchRepository
-import com.dicoding.academy.githubuser.core.domain.useCase.DetailUserUseCase
-import com.dicoding.academy.githubuser.core.domain.useCase.DetailUserUseCaseImpl
+import com.dicoding.academy.githubuser.core.domain.useCase.*
 import com.dicoding.academy.githubuser.ui.main.MainViewModel
 import com.dicoding.academy.githubuser.ui.adapter.UserAdapter
 import com.dicoding.academy.githubuser.ui.detail.DetailUserViewModel
@@ -90,7 +89,18 @@ object ApplicationModule {
             return DetailUserUseCaseImpl(repository)
         }
 
+        fun provideSearchUserUseCase(repository: UserSearchRepository): UserSearchUseCase{
+            return UserSearchUseCaseImpl(repository)
+        }
+
+        fun provideFollowUseCase(repository: UserFollowRepository): UserFollowUseCase{
+            return UserFollowUseCaseImpl(repository)
+        }
+
         factory { provideDetailUserUseCase(get()) }
+        factory { provideSearchUserUseCase(get()) }
+        factory { provideFollowUseCase(get()) }
+
     }
 
     val viewModelModule = module {
