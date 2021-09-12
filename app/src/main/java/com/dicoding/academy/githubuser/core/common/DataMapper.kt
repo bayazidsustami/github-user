@@ -27,7 +27,7 @@ object DataMapper {
             publicRepos = publicRepos,
             followers = followers,
             following = following,
-            name = name!!,
+            name = name ?: "",
             avatarUrl = avatarUrl,
             location = location,
             isFavorite = false

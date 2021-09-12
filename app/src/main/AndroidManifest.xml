@@ -4,8 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <permission android:name="com.dicoding.academy.githubuser.READ_DATABASE" android:protectionLevel="normal"/>
-    <permission android:name="com.dicoding.academy.githubuser.WRITE_DATABASE" android:protectionLevel="normal"/>
+    <permission android:name="com.dicoding.academy.githubuser.provider.READ_DATABASE" android:protectionLevel="normal"/>
+    <permission android:name="com.dicoding.academy.githubuser.provider.WRITE_DATABASE" android:protectionLevel="normal"/>
 
     <application
         android:name=".GithubUserApp"
@@ -17,11 +17,11 @@
         android:theme="@style/Theme.GithubUser">
         <provider
             android:name=".core.data.dataSource.contentProvider.UserFavoriteProvider"
-            android:authorities="com.dicoding.academy.githubuser"
+            android:authorities="com.dicoding.academy.githubuser.provider"
             android:enabled="true"
             android:exported="true"
-            android:readPermission="com.dicoding.academy.githubuser.READ_DATABASE"
-            android:writePermission="com.dicoding.academy.githubuser.WRITE_DATABASE">
+            android:readPermission="com.dicoding.academy.githubuser.provider.READ_DATABASE"
+            android:writePermission="com.dicoding.academy.githubuser.provider.WRITE_DATABASE">
         </provider>
 
         <activity android:name=".ui.main.MainActivity">

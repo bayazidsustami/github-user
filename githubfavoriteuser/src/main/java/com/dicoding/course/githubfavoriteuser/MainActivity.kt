@@ -10,21 +10,23 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     companion object{
-        private const val AUTHORITY = "com.dicoding.academy.githubuser"
-        private val CONTENT_URI: Uri = Uri.Builder().scheme("content")
-            .authority(AUTHORITY)
-            .appendPath("detail_user_entity")
-            .build()
+        private const val AUTHORITY = "com.dicoding.academy.githubuser.provider"
+        private val CONTENT_URI: Uri = Uri.parse("content://$AUTHORITY/detail_user_entity")
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val providerClient = contentResolver?.acquireContentProviderClient(CONTENT_URI)
         try {
-            val providerClient = contentResolver?.acquireContentProviderClient(Uri.parse("content://com.dicoding.academy.githubuser/user"))
-            val data = providerClient?.query(CONTENT_URI, null, null, null, null)
-            Log.d("DATAS", data?.count.toString())
+            val cursor = providerClient?.query(CONTENT_URI,
+                null,
+                null,
+                null,
+                null)
+            val name = cursor?.count
+            Log.d("DATAS", name.toString())
         }catch (e: Exception){
             e.printStackTrace()
         }
