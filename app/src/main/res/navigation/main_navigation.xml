@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_mainFragment_to_favoriteFragment"
             app:destination="@id/favoriteFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailUserFragment"
@@ -26,4 +29,8 @@
             android:id="@+id/action_favoriteFragment_to_detailUserFragment"
             app:destination="@id/detailUserFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.dicoding.academy.githubuser.ui.settings.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>

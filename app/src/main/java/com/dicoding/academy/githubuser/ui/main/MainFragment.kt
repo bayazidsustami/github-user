@@ -41,6 +41,10 @@ class MainFragment: BaseFragment<FragmentMainBinding>(
         binding.btnFavorite.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_favoriteFragment)
         }
+
+        binding.btnSettings.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_settingsFragment)
+        }
     }
 
     private fun initAdapter(){
