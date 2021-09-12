@@ -3,7 +3,9 @@
     package="com.dicoding.course.githubfavoriteuser">
 
     <uses-permission android:name="com.dicoding.academy.githubuser.provider.READ_DATABASE"/>
+    <uses-permission-sdk-23 android:name="com.dicoding.academy.githubuser.provider.READ_DATABASE"/>
     <uses-permission android:name="com.dicoding.academy.githubuser.provider.WRITE_DATABASE"/>
+    <uses-permission-sdk-23 android:name="com.dicoding.academy.githubuser.provider.WRITE_DATABASE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <queries>
