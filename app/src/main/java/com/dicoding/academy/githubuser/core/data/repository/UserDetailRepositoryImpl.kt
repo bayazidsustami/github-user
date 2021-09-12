@@ -21,18 +21,14 @@ class UserDetailRepositoryImpl(
     override suspend fun getUserDetail(username: String): Flow<Result<DetailUserUIModel>> {
         return flow {
             emit(Result.Loading(null))
-            val isExists = localDataSource.getUserIfExists(username).first()
-            if (isExists){
-                Log.d("DATAS", "LOCALS $isExists")
-                emitAll(localDataSource.getUserDetail(username).map {
-                    Log.d("DATAS", "LOCALSM $isExists")
-                    Result.Success(it.mapDetailToDomain())
-                })
+            val data = localDataSource.getUserDetail(username).firstOrNull()
+            Log.d("DATAS", data.toString())
+            if (data != null){
+                emit(Result.Success(data.mapDetailToDomain()))
             }else{
                 remoteDataSource.getDetailUser(username).collect {
                     when(it){
                         is Result.Success -> {
-                            Log.d("DATAS", it.data.toString())
                             emit(Result.Success(it.data.mapResponseDetailToDomain()))
                         }
                         is Result.Error -> {
