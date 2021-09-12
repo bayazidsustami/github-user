@@ -7,11 +7,11 @@ import androidx.paging.PagingData
 import com.dicoding.academy.githubuser.core.common.DataMapper.mapDetailToDomain
 import com.dicoding.academy.githubuser.core.common.DataMapper.mapDetailToEntity
 import com.dicoding.academy.githubuser.core.common.DataMapper.mapResponseDetailToDomain
+import com.dicoding.academy.githubuser.core.common.Result
 import com.dicoding.academy.githubuser.core.data.dataSource.local.LocalDataSource
 import com.dicoding.academy.githubuser.core.data.dataSource.remote.RemoteDataSource
 import com.dicoding.academy.githubuser.core.domain.model.DetailUserUIModel
 import com.dicoding.academy.githubuser.core.domain.repository.UserDetailRepository
-import com.dicoding.academy.githubuser.core.common.Result
 import kotlinx.coroutines.flow.*
 
 class UserDetailRepositoryImpl(

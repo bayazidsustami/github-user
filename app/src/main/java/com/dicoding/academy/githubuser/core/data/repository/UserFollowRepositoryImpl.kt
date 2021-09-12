@@ -4,8 +4,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.dicoding.academy.githubuser.core.data.dataSource.UserFollowPagingSource
-import com.dicoding.academy.githubuser.core.data.dataSource.remote.response.UserItem
 import com.dicoding.academy.githubuser.core.data.dataSource.remote.networking.ApiService
+import com.dicoding.academy.githubuser.core.data.dataSource.remote.response.UserItem
 import com.dicoding.academy.githubuser.core.domain.repository.UserFollowRepository
 import com.dicoding.academy.githubuser.utility.Constants.COUNT_OF_PER_PAGE
 import kotlinx.coroutines.flow.Flow

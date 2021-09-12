@@ -1,9 +1,9 @@
 package com.dicoding.academy.githubuser.core.domain.useCase
 
 import androidx.paging.PagingData
+import com.dicoding.academy.githubuser.core.common.Result
 import com.dicoding.academy.githubuser.core.domain.model.DetailUserUIModel
 import com.dicoding.academy.githubuser.core.domain.repository.UserDetailRepository
-import com.dicoding.academy.githubuser.core.common.Result
 import kotlinx.coroutines.flow.Flow
 
 class DetailUserUseCaseImpl constructor(

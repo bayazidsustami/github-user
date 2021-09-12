@@ -7,10 +7,10 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.dicoding.academy.githubuser.R
+import com.dicoding.academy.githubuser.core.common.Result
 import com.dicoding.academy.githubuser.core.domain.model.DetailUserUIModel
 import com.dicoding.academy.githubuser.databinding.FragmentDetailUserBinding
 import com.dicoding.academy.githubuser.ui.baseUI.BaseFragment
-import com.dicoding.academy.githubuser.core.common.Result
 import com.dicoding.academy.githubuser.utility.reformatNumber
 import com.dicoding.academy.githubuser.utility.showImage
 import com.google.android.material.snackbar.Snackbar

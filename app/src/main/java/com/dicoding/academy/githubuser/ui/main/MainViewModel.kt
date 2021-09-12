@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.dicoding.academy.githubuser.core.data.dataSource.remote.response.UserItem
-import com.dicoding.academy.githubuser.core.domain.repository.UserSearchRepository
 import com.dicoding.academy.githubuser.core.domain.useCase.UserSearchUseCase
 import kotlinx.coroutines.flow.Flow
 

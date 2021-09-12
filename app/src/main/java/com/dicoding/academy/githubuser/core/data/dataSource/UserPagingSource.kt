@@ -2,8 +2,8 @@ package com.dicoding.academy.githubuser.core.data.dataSource
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.dicoding.academy.githubuser.core.data.dataSource.remote.response.UserItem
 import com.dicoding.academy.githubuser.core.data.dataSource.remote.networking.ApiService
+import com.dicoding.academy.githubuser.core.data.dataSource.remote.response.UserItem
 import com.dicoding.academy.githubuser.utility.Constants.COUNT_OF_PER_PAGE
 import com.dicoding.academy.githubuser.utility.Constants.USER_PAGING_STARTING_PAGE_INDEX
 import okio.IOException
