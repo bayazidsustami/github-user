@@ -4,13 +4,14 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.database.Cursor
 import android.net.Uri
-import android.util.Log
 import com.dicoding.course.githubfavoriteuser.data.UserModel
 
-class ProviderHelper(private val context: Context) {
-    companion object{
-        private const val AUTHORITY = "com.dicoding.academy.githubuser.provider"
-        private val CONTENT_URI: Uri = Uri.Builder().scheme("content")
+class ProviderHelper constructor(
+    private val context: Context
+) {
+    private companion object{
+        const val AUTHORITY = "com.dicoding.academy.githubuser.provider"
+        val CONTENT_URI: Uri = Uri.Builder().scheme("content")
             .authority(AUTHORITY)
             .appendPath("detail_user_entity")
             .build()
@@ -27,7 +28,6 @@ class ProviderHelper(private val context: Context) {
                 null,
                 null,
                 null)
-            Log.d("DATAS", cursor.mapCursorToList().toString())
         }catch (e: Exception){
             e.printStackTrace()
         }finally {
@@ -41,7 +41,7 @@ class ProviderHelper(private val context: Context) {
     private fun Cursor?.mapCursorToList(): List<UserModel>{
         val result = mutableListOf<UserModel>()
         if (this != null){
-            while (this.moveToNext()){
+            while (moveToNext()){
                 val model = UserModel(
                     id = getInt(getColumnIndexOrThrow("id")),
                     login = getString(getColumnIndexOrThrow("login")),
