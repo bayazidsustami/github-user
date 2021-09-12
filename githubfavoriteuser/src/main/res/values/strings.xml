@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GithubFavoriteUser</string>
+    <string name="user">User</string>
+    <string name="username">\@%s</string>
 </resources>
