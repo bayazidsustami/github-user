@@ -1,6 +1,5 @@
 package com.dicoding.academy.githubuser.core.data.repository
 
-import android.util.Log
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -22,7 +21,6 @@ class UserDetailRepositoryImpl(
         return flow {
             emit(Result.Loading(null))
             val data = localDataSource.getUserDetail(username).firstOrNull()
-            Log.d("DATAS", data.toString())
             if (data != null){
                 emit(Result.Success(data.mapDetailToDomain()))
             }else{
