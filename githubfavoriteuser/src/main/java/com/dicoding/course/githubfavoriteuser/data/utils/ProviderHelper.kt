@@ -6,7 +6,7 @@ import android.database.Cursor
 import android.net.Uri
 import com.dicoding.course.githubfavoriteuser.data.UserModel
 
-class ProviderHelper constructor(
+class ProviderHelper(
     private val context: Context
 ) {
     private companion object{
@@ -28,20 +28,20 @@ class ProviderHelper constructor(
                 null,
                 null,
                 null)
+            return cursor.mapCursorToList()
         }catch (e: Exception){
             e.printStackTrace()
         }finally {
             providerClient?.close()
             cursor?.close()
         }
-
-        return cursor.mapCursorToList()
+        return emptyList()
     }
 
     private fun Cursor?.mapCursorToList(): List<UserModel>{
         val result = mutableListOf<UserModel>()
         if (this != null){
-            while (moveToNext()){
+            while (this.moveToNext()){
                 val model = UserModel(
                     id = getInt(getColumnIndexOrThrow("id")),
                     login = getString(getColumnIndexOrThrow("login")),

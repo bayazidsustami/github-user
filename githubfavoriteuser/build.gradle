@@ -56,4 +56,9 @@ dependencies {
 
     //koin dependency injection
     implementation "io.insert-koin:koin-android:$koin_version"
+
+    //ViewModel and livedata
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$viewModel_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModel_version"
 }

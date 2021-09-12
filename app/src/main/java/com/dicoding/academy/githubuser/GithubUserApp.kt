@@ -23,17 +23,15 @@ open class GithubUserApp: Application() {
             androidLogger(Level.NONE)
             androidContext(this@GithubUserApp)
             modules(
-                listOf(
-                    networkModule,
-                    databaseModule,
-                    localDataSourceModule,
-                    remoteDataSourceModule,
-                    repositoryModule,
-                    domainModule,
-                    viewModelModule,
-                    adapterModule,
-                    dispatcherModule
-                )
+                networkModule,
+                databaseModule,
+                localDataSourceModule,
+                remoteDataSourceModule,
+                repositoryModule,
+                domainModule,
+                viewModelModule,
+                adapterModule,
+                dispatcherModule
             )
         }
     }

@@ -12,11 +12,11 @@ import org.koin.dsl.module
 
 object ApplicationModule {
     val dataSourceModule = module {
-        single { ProviderHelper(androidContext()) }
 
         fun provideDataSource(providerHelper: ProviderHelper): ProviderDataSource{
             return ProviderDataSourceImpl(providerHelper)
         }
+        single { ProviderHelper(androidContext()) }
         factory { provideDataSource(get()) }
     }
 
@@ -29,6 +29,6 @@ object ApplicationModule {
     }
 
     val viewModelModule = module {
-        viewModel { MainViewModel(get()) }
+        viewModel { MainViewModel( get()) }
     }
 }

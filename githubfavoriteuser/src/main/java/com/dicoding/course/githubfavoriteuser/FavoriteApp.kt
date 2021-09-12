@@ -9,18 +9,18 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 
-open class App : Application(){
+open class FavoriteApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
         startKoin {
             androidLogger(Level.NONE)
-            androidContext(this@App)
-            modules(listOf(
+            androidContext(this@FavoriteApp)
+            modules(
                 dataSourceModule,
                 repositoryModule,
                 viewModelModule
-            ))
+            )
         }
     }
 }
