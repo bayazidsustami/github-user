@@ -1,4 +1,4 @@
-package com.dicoding.course.githubfavoriteuser
+package com.dicoding.course.githubfavoriteuser.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

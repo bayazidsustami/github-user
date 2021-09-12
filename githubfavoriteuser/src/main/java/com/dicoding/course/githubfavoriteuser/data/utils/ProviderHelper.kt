@@ -1,12 +1,13 @@
-package com.dicoding.course.githubfavoriteuser.utils
+package com.dicoding.course.githubfavoriteuser.data.utils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.database.Cursor
 import android.net.Uri
 import android.util.Log
-import com.dicoding.course.githubfavoriteuser.UserModel
+import com.dicoding.course.githubfavoriteuser.data.UserModel
 
-class ProviderHelper(context: Context) {
+class ProviderHelper(private val context: Context) {
     companion object{
         private const val AUTHORITY = "com.dicoding.academy.githubuser.provider"
         private val CONTENT_URI: Uri = Uri.Builder().scheme("content")
@@ -15,7 +16,8 @@ class ProviderHelper(context: Context) {
             .build()
     }
 
-    init {
+    @SuppressLint("Recycle")
+    fun getAllFavoriteUser(): List<UserModel>{
         val providerClient = context.contentResolver?.acquireContentProviderClient(CONTENT_URI)
         var cursor: Cursor? = null
         try {
@@ -29,8 +31,11 @@ class ProviderHelper(context: Context) {
         }catch (e: Exception){
             e.printStackTrace()
         }finally {
+            providerClient?.close()
             cursor?.close()
         }
+
+        return cursor.mapCursorToList()
     }
 
     private fun Cursor?.mapCursorToList(): List<UserModel>{

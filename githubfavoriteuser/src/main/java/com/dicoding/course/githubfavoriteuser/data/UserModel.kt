@@ -1,4 +1,4 @@
-package com.dicoding.course.githubfavoriteuser
+package com.dicoding.course.githubfavoriteuser.data
 
 data class UserModel(
     val id: Int,
