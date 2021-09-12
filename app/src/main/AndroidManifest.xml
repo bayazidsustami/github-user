@@ -9,7 +9,7 @@
 
     <application
         android:name=".GithubUserApp"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -24,13 +24,16 @@
             android:writePermission="com.dicoding.academy.githubuser.provider.WRITE_DATABASE">
         </provider>
 
-        <activity android:name=".ui.main.MainActivity">
+        <activity android:name=".ui.main.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".utility.DailyNotification"/>
     </application>
 
 </manifest>
