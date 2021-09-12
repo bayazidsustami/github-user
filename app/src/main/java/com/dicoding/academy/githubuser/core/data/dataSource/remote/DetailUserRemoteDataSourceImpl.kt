@@ -4,7 +4,7 @@ import android.util.Log
 import com.dicoding.academy.githubuser.core.data.dataSource.remote.response.DetailUserResponse
 import com.dicoding.academy.githubuser.core.data.dataSource.remote.networking.ApiService
 import com.dicoding.academy.githubuser.utility.DispatcherProvider
-import com.dicoding.academy.githubuser.utility.Result
+import com.dicoding.academy.githubuser.core.common.Result
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn

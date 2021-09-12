@@ -11,7 +11,7 @@ import com.dicoding.academy.githubuser.core.data.dataSource.local.LocalDataSourc
 import com.dicoding.academy.githubuser.core.data.dataSource.remote.RemoteDataSource
 import com.dicoding.academy.githubuser.core.domain.model.DetailUserUIModel
 import com.dicoding.academy.githubuser.core.domain.repository.UserDetailRepository
-import com.dicoding.academy.githubuser.utility.Result
+import com.dicoding.academy.githubuser.core.common.Result
 import kotlinx.coroutines.flow.*
 
 class UserDetailRepositoryImpl(

@@ -1,4 +1,4 @@
-package com.dicoding.academy.githubuser.utility
+package com.dicoding.academy.githubuser.core.common
 
 sealed class Result<out T>{
     data class Loading<T>(val data: T? = null): Result<T>()
