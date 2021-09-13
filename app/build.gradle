@@ -23,8 +23,12 @@ android {
         debug{
             buildConfigField "String", "BASE_URL", rootProject.ext.base_url
             buildConfigField "String", "TOKEN", rootProject.ext.token
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         release {
+            buildConfigField "String", "BASE_URL", rootProject.ext.base_url
+            buildConfigField "String", "TOKEN", rootProject.ext.token
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
