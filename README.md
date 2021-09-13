@@ -1,4 +1,5 @@
 # Github User
+[![Github Action](https://github.com/bayazidsustami/github-user/actions/workflows/android.yml/badge.svg)](https://github.com/bayazidsustami/github-user/actions/workflows/android.yml)
 
 github user is an application to do user search easily, we can choose favorite user and save it. This project is an assignment for the BFAA coding class.
 This project is built using a clean architecture (data, domain, presenter) + MVVM
