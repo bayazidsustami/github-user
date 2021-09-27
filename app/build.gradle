@@ -6,29 +6,29 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion AppConfig.targetSdk
+    buildToolsVersion AppConfig.buildToolVersion
 
     defaultConfig {
-        applicationId "com.dicoding.academy.githubuser"
-        minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        applicationId AppConfig.applicationId
+        minSdkVersion AppConfig.minSdk
+        targetSdkVersion AppConfig.targetSdk
+        versionCode AppConfig.versionCode
+        versionName AppConfig.versionName
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         debug{
-            buildConfigField "String", "BASE_URL", rootProject.ext.base_url
-            buildConfigField "String", "TOKEN", rootProject.ext.token
+            buildConfigField "String", "BASE_URL", AppConfig.base_url
+            buildConfigField "String", "TOKEN", AppConfig.token
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         release {
-            buildConfigField "String", "BASE_URL", rootProject.ext.base_url
-            buildConfigField "String", "TOKEN", rootProject.ext.token
+            buildConfigField "String", "BASE_URL", AppConfig.base_url
+            buildConfigField "String", "TOKEN", AppConfig.token
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -48,50 +48,47 @@ android {
 
 dependencies {
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "androidx.core:core-ktx:$androidX_core_ktx_version"
+    implementation Dependencies.androidX_core_ktx
+    implementation Dependencies.androidX_app_compact
+    implementation Dependencies.material_design
+    implementation Dependencies.constrain_layout
+    implementation Dependencies.lottie
+    implementation Dependencies.circle_image_view
 
-    implementation "androidx.appcompat:appcompat:$androidX_app_compact_version"
-    implementation "com.google.android.material:material:$material_design_version"
-    implementation "androidx.constraintlayout:constraintlayout:$constraint_version"
-    implementation "com.airbnb.android:lottie:$lottie_version"
-
-    implementation "com.github.bumptech.glide:glide:$glide_version"
-    kapt "com.github.bumptech.glide:compiler:$glide_version"
-    implementation ("com.github.bumptech.glide:okhttp3-integration:$glide_version"){
+    implementation Dependencies.glide
+    kapt Dependencies.glide_compiler
+    implementation (Dependencies.glide_integration){
         exclude group: 'glide-parent'
     }
-    implementation "de.hdodenhof:circleimageview:$circle_imageView"
-
 
     //testing
-    testImplementation "junit:junit:$jUnit_version"
-    androidTestImplementation "androidx.test.ext:junit:$ext_jUnit_version"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+    testImplementation TestDependencies.junit
+    androidTestImplementation TestDependencies.junit_ext
+    androidTestImplementation TestDependencies.espresso
 
     //ViewModel and livedata
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$viewModel_version"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModel_version"
+    implementation Dependencies.lifecycle_ext
+    implementation Dependencies.live_data
+    implementation Dependencies.view_model
 
     //koin dependency injection
-    implementation "io.insert-koin:koin-android:$koin_version"
+    implementation Dependencies.koin
 
     //navigation component
-    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
+    implementation Dependencies.nav_fragment
+    implementation Dependencies.nav_ui
 
     //networking
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-moshi:$moshi_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:$logging_version"
+    implementation Dependencies.retrofit
+    implementation Dependencies.moshi_converter
+    implementation Dependencies.interceptor
 
     //pagination
-    implementation "androidx.paging:paging-runtime-ktx:$pagination_version"
+    implementation Dependencies.pagination
 
-    implementation "androidx.room:room-ktx:$room_version"
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
+    implementation Dependencies.room
+    implementation Dependencies.room_runtime
+    kapt Dependencies.room_compiler
 
-    implementation "androidx.preference:preference-ktx:$preference_version"
+    implementation Dependencies.preference_ktx
 }

@@ -5,14 +5,14 @@ plugins {
 }
 
 android {
-    compileSdk 30
+    compileSdk AppConfig.targetSdk
 
     defaultConfig {
-        applicationId "com.dicoding.course.githubfavoriteuser"
-        minSdk 21
-        targetSdk 30
-        versionCode 1
-        versionName "1.0"
+        applicationId AppConfig.applicationIdConsumer
+        minSdk AppConfig.minSdk
+        targetSdk AppConfig.targetSdk
+        versionCode AppConfig.versionCode
+        versionName AppConfig.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -37,28 +37,27 @@ android {
 }
 
 dependencies {
+    implementation Dependencies.androidX_core_ktx
+    implementation Dependencies.androidX_app_compact
+    implementation Dependencies.material_design
+    implementation Dependencies.constrain_layout
+    implementation Dependencies.circle_image_view
 
-    implementation "androidx.core:core-ktx:$androidX_core_ktx_version"
-    implementation "androidx.appcompat:appcompat:$androidX_app_compact_version"
-    implementation "com.google.android.material:material:$material_design_version"
-    implementation "androidx.constraintlayout:constraintlayout:$constraint_version"
-
-    implementation "com.github.bumptech.glide:glide:$glide_version"
-    kapt "com.github.bumptech.glide:compiler:$glide_version"
-    implementation ("com.github.bumptech.glide:okhttp3-integration:$glide_version"){
+    implementation Dependencies.glide
+    kapt Dependencies.glide_compiler
+    implementation (Dependencies.glide_integration){
         exclude group: 'glide-parent'
     }
-    implementation "de.hdodenhof:circleimageview:$circle_imageView"
 
-    testImplementation "junit:junit:$jUnit_version"
-    androidTestImplementation "androidx.test.ext:junit:$ext_jUnit_version"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+    testImplementation TestDependencies.junit
+    androidTestImplementation TestDependencies.junit_ext
+    androidTestImplementation TestDependencies.espresso
 
     //koin dependency injection
-    implementation "io.insert-koin:koin-android:$koin_version"
+    implementation Dependencies.koin
 
     //ViewModel and livedata
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$viewModel_version"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModel_version"
+    implementation Dependencies.lifecycle_ext
+    implementation Dependencies.live_data
+    implementation Dependencies.view_model
 }
