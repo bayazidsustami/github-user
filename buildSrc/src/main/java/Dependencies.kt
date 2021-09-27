@@ -10,9 +10,9 @@ object Dependencies {
     const val circle_image_view = "de.hdodenhof:circleimageview:${Versions.circle_imageView}"
 
     //ViewModel and livedata
-    const val lifecycle_ext = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle_version}"
+    const val lifecycle_ext = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle_version}"
     const val live_data = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.viewModel_version}"
-    const val view_model = "androidx.lifecycle:lifecycle-viewmodel-ktx:$${Versions.viewModel_version}"
+    const val view_model = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewModel_version}"
 
     //koin dependency injection
     const val koin = "io.insert-koin:koin-android:${Versions.koin_version}"
