@@ -1,5 +1,5 @@
 object Versions {
-    const val kotlin_version = "1.5.30"
+    const val kotlin_version = "1.5.31"
     const val coroutine_version = "1.4.1"
     const val coroutine_android_version = "1.4.3"
     const val androidX_core_ktx_version = "1.6.0"
@@ -32,5 +32,5 @@ object Versions {
 
     const val room_version = "2.3.0"
     const val preference_version = "1.1.1"
-    const val gradle = "7.0.2"
+    const val gradle = "7.0.3"
 }

@@ -5,6 +5,8 @@ plugins {
     kotlin("kapt")
 }
 
+apply(from="../commons_dependencies.gradle")
+
 android {
     compileSdk = AppConfig.targetSdk
     buildToolsVersion = AppConfig.buildToolVersion
@@ -49,10 +51,6 @@ android {
 
 dependencies {
 
-    implementation(Dependencies.androidX_core_ktx)
-    implementation(Dependencies.androidX_app_compact)
-    implementation(Dependencies.material_design)
-    implementation(Dependencies.constrain_layout)
     implementation(Dependencies.lottie)
     implementation(Dependencies.circle_image_view)
 
